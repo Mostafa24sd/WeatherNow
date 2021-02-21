@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="currentWeather"
+            type="com.mostafasadati.weathernow.model.CurrentWeather" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:background="@drawable/back">
+
+        <com.airbnb.lottie.LottieAnimationView
+            setLinesAnimation="@{currentWeather.wind.speed}"
+            setWindDirectionAnim="@{currentWeather.wind.deg}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="wind_lines.json"
+            app:lottie_loop="true" />
+
+        <LinearLayout
+            android:id="@+id/wind_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                setTurbineAnimation="@{currentWeather.wind.speed}"
+                setWindDirectionAnim="@{currentWeather.wind.deg}"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0.3"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="turbine.json"
+                app:lottie_loop="true" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.7"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wind"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_18ssp" />
+
+                <TextView
+                    android:id="@+id/windSpeedTxt"
+                    setWindTxt="@{currentWeather.wind.speed}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/exo_e_l"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_26ssp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/degIMG"
+                        setArrowImg="@{currentWeather.wind.deg}"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/direction" />
+
+                    <TextView
+                        android:id="@+id/degTxt"
+                        setWindDeg="@{currentWeather.wind.deg}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_15ssp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

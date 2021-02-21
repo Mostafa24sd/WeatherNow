@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="currentWeather"
+            type="com.mostafasadati.weathernow.model.CurrentWeather" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/pressure_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:background="@drawable/pressure_back"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/pressureIMG"
+            setPressureImg="@{currentWeather.main.pressure}"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pressure"
+                android:textAlignment="center"
+                android:textSize="@dimen/_18ssp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pressureTxt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/exo_e_l"
+                android:maxLines="1"
+                android:text="@{currentWeather.main.pressure + ` hpa`}"
+                android:textAlignment="center"
+                android:textSize="@dimen/_26ssp"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

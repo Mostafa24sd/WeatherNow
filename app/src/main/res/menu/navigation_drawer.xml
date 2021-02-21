@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/ic_map_black_24dp"
+        android:title="@string/map" />
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/setting" />
+    <item
+        android:id="@+id/rate"
+        android:icon="@drawable/ic_star_black_24dp"
+        android:title="@string/rate" />
+
+
+    <item android:title="@string/other">
+
+        <menu>
+            <!-- <item
+                 android:id="@+id/help"
+                 android:icon="@drawable/ic_help_black_24dp"
+                 android:title="@string/help" />-->
+            <item
+                android:id="@+id/report"
+                android:icon="@drawable/ic_report_problem_black_24dp"
+                android:title="@string/report_a_problem" />
+            <item
+                android:id="@+id/contact"
+                android:icon="@drawable/ic_email_black_24dp"
+                android:title="@string/contact_us" />
+
+        </menu>
+
+    </item>
+
+</menu>

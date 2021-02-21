@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="Setting"
+        app:title="@string/messages_header">
+
+        <ListPreference
+            app:defaultValue="metric"
+            app:entries="@array/unit_entries"
+            app:entryValues="@array/unit_values"
+            app:key="unit"
+            app:title="@string/unit_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="light"
+            app:entries="@array/widget_color_entries"
+            app:entryValues="@array/widget_color_values"
+            app:key="widget_color"
+            app:title="@string/widget_color"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Audio">
+
+        <SwitchPreferenceCompat
+            app:key="audio"
+            app:title="Sound effects"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

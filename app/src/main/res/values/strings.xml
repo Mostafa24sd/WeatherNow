@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">WeatherNow</string>
+    <string name="can_t_load">Cannot load</string>
+    <string name="temp">Temp</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind">Wind</string>
+
+
+    <string name="n">North</string>
+    <string name="nne">North-NorthEast</string>
+    <string name="ne">North East</string>
+    <string name="ene">East-NorthEast</string>
+    <string name="e">East</string>
+    <string name="ese">East-SouthEast</string>
+    <string name="se">SouthEast</string>
+    <string name="sse">South-SouthEast</string>
+    <string name="s">South</string>
+    <string name="ssw">South-SouthWest</string>
+    <string name="sw">SouthWest</string>
+    <string name="wsw">West-SouthWest</string>
+    <string name="w">West</string>
+    <string name="wnw">West-NorthWest</string>
+    <string name="nw">NorthWest</string>
+    <string name="nnw">North-NorthWest</string>
+    <string name="pressure">Pressure</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+
+
+    <string name="sunday">Sun</string>
+    <string name="monday">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="forecast">Forecast:</string>
+    <string name="map">Map</string>
+    <string name="setting">Setting</string>
+    <string name="rate">Rate</string>
+    <string name="other">other</string>
+    <string name="report_a_problem">Report a problem</string>
+    <string name="contact_us">Contact us</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="search_city">Search city</string>
+    <string name="not_found">Not found:(</string>
+    <string name="search_by_gps">Search by GPS</string>
+    <string name="fells_like">Fells like: </string>
+    <string name="select_color_of_widget">Select color of Widget:</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+
+
+    <string-array name="query_suggestions">
+        <item>Android</item>
+        <item>iOS</item>
+        <item>SCALA</item>
+        <item>Ruby</item>
+        <item>JavaScript</item>
+    </string-array>
+    <!-- Preference Titles -->
+    <string name="messages_header">General Setting</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="unit_title">Select Unit</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="widget_color">Widget color</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
