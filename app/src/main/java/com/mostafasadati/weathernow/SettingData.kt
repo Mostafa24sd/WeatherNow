@@ -8,7 +8,7 @@ import java.lang.Exception
 class SettingData {
 
     companion object {
-        val SETTING_FILE_NAME = "Settings"
+        const val SETTING_FILE_NAME = "Settings"
 
         fun saveSetting(context: Context) {
             val editor: SharedPreferences.Editor? =

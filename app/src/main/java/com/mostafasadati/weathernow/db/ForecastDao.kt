@@ -13,6 +13,9 @@ interface ForecastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(forecastWeather: ForecastWeather)
 
-    @Query("SELECT * FROM forecast_table WHERE name = :city AND country = :country")
-    fun get(city: String = Setting.city, country: String = Setting.country): ForecastWeather
+    /* @Query("SELECT * FROM forecast_table WHERE name = :city AND country = :country")
+     fun get(city: String = Setting.city, country: String = Setting.country): ForecastWeather*/
+
+    @Query("SELECT * FROM forecast_table WHERE i=0")
+    fun get(): ForecastWeather
 }

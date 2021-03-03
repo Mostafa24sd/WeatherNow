@@ -6,14 +6,11 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.mostafasadati.weathernow.Setting
-import com.mostafasadati.weathernow.Unit
-import java.util.*
-import kotlin.math.roundToInt
 
 @Entity(tableName = "current_weather")
 data class CurrentWeather(
     @PrimaryKey
+    var i: Int,
     val id: Int,
     val base: String,
     @Embedded(prefix = "clouds_")

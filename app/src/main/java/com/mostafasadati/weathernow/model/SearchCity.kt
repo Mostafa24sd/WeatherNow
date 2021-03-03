@@ -8,5 +8,11 @@ data class SearchCity(
     val country: String,
     val lat: Float,
     val lon: Float,
+    val local_names: LocalNames?,
     val name: String
-) : Parcelable
+) : Parcelable {
+    @Parcelize
+    data class LocalNames(
+        val feature_name: String?
+    ) : Parcelable
+}

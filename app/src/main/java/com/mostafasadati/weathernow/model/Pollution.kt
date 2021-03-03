@@ -10,15 +10,15 @@ import com.google.gson.reflect.TypeToken
 
 @Entity(tableName = "pollution_table")
 data class Pollution(
+    @PrimaryKey
+    var i: Int,
     @SerializedName("list")
     val list: List<PollutionList>,
-    @PrimaryKey
     @Embedded
     val coord: Coord
 )
 
 data class Coord(
-    @PrimaryKey
     val lon: Float,
     val lat: Float
 )

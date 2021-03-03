@@ -13,6 +13,6 @@ interface PollutionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(pollution: Pollution)
 
-    @Query("SELECT * FROM pollution_table WHERE lat= :lat AND lon = :lon")
-    fun get(lat: Float = Setting.lat, lon: Float = Setting.lon): Pollution
+    @Query("SELECT * FROM pollution_table WHERE i=0")
+    fun get(): Pollution
 }

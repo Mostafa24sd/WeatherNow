@@ -2,6 +2,7 @@ package com.mostafasadati.weathernow.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -12,6 +13,7 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +22,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.*
 import com.mostafasadati.weathernow.R
 import com.mostafasadati.weathernow.Resource
+import com.mostafasadati.weathernow.Setting
 import com.mostafasadati.weathernow.Status
 import com.mostafasadati.weathernow.data.SearchCityAdapter
 import com.mostafasadati.weathernow.databinding.SearchFragmentBinding
@@ -29,7 +32,6 @@ import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.search_fragment.*
-
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.search_fragment) {
@@ -51,7 +53,6 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         gps.setOnClickListener {
             checkPermission()
         }
-
 
         setHasOptionsMenu(true)
     }
@@ -84,15 +85,15 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
-    private fun searchByName(query: String) {
-        viewModel.searchByName(query)
+    private fun searchByGPS(location: Location) {
+        viewModel.searchByGPS(latitude = location.latitude, longitudes = location.longitude)
             .observe(viewLifecycleOwner) {
                 setData(it)
             }
     }
 
-    private fun searchByGPS(location: Location) {
-        viewModel.searchByGPS(latitude = location.latitude, longitudes = location.longitude)
+    private fun searchByName(query: String) {
+        viewModel.searchByName(query)
             .observe(viewLifecycleOwner) {
                 setData(it)
             }
@@ -155,13 +156,16 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         inflater.inflate(R.menu.search_menu, menu)
 
         val searchItem = menu.findItem(R.id.searchview)
-        searchItem.expandActionView()
 
         val searchView = searchItem.actionView as SearchView
 
+        searchView.onActionViewExpanded()
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchByName(query.toString())
+                if (query != null && query.trim().isNotEmpty()) {
+                    searchByName(query)
+                }
                 return true
             }
 
@@ -176,6 +180,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private fun setRecyclerview(data: List<SearchCity>) {
         search_result_recyclerview.adapter = SearchCityAdapter(data) {
+            Setting.SHOULD_UPDATE = true
             val action = SearchFragmentDirections.actionSearchFragmentToMainFragment(it)
             findNavController().navigate(action)
         }
@@ -192,5 +197,21 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                     bindings.status = Status.NOT_FOUND
             }
         }
+    }
+
+    override fun onDetach() {
+        hideKeyboard()
+        super.onDetach()
+    }
+
+    private fun hideKeyboard() {
+        val imm: InputMethodManager =
+            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        var view = requireActivity().currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

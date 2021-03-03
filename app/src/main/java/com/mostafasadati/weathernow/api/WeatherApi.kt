@@ -22,19 +22,36 @@ interface WeatherApi {
             if ((1..2).random() == 1) BuildConfig.OPENWEATHERMAP_API_KEY1 else BuildConfig.OPENWEATHERMAP_API_KEY2
     }
 
-    @GET(CURRENT)
+   /* @GET(CURRENT)
     suspend fun getCurrentByName(
         @Query("q") city: String = Setting.city + "," + Setting.country,
         @Query("units") unit: String = Setting.unit.name,
         @Query("appid") apiKey: String = API_KEY
+    ): CurrentWeather*/
+
+    @GET(CURRENT)
+    suspend fun getCurrentByGPS(
+        @Query("lat") lat: Float = Setting.lat,
+        @Query("lon") lon: Float = Setting.lon,
+        @Query("units") unit: String = Setting.unit.name,
+        @Query("appid") apiKey: String = API_KEY
     ): CurrentWeather
 
-    @GET(FORECAST)
+/*  @GET(FORECAST)
     suspend fun getForecastByName(
         @Query("q") city: String = Setting.city + "," + Setting.country,
         @Query("units") unit: String = Setting.unit.name,
         @Query("appid") apiKey: String = API_KEY
+    ): ForecastWeather*/
+
+    @GET(FORECAST)
+    suspend fun getForecastByGPS(
+        @Query("lat") lat: Float = Setting.lat,
+        @Query("lon") lon: Float = Setting.lon,
+        @Query("units") unit: String = Setting.unit.name,
+        @Query("appid") apiKey: String = API_KEY
     ): ForecastWeather
+
 
     @GET(POLLUTION)
     suspend fun getPollution(

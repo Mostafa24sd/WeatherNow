@@ -3,6 +3,7 @@ package com.mostafasadati.weathernow.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import com.mostafasadati.weathernow.Setting
 import com.mostafasadati.weathernow.SettingData
 import com.mostafasadati.weathernow.api.WeatherApi
 import com.mostafasadati.weathernow.db.CurrentDatabase

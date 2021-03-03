@@ -3,6 +3,7 @@ package com.mostafasadati.weathernow.data
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.mostafasadati.weathernow.Resource
+import com.mostafasadati.weathernow.Setting
 import com.mostafasadati.weathernow.api.WeatherApi
 import com.mostafasadati.weathernow.db.CurrentDatabase
 import com.mostafasadati.weathernow.db.ForecastDatabase
@@ -18,6 +19,7 @@ class WeatherRepository @Inject constructor(
     private val pollutionDatabase: PollutionDatabase,
     private val forecastDatabase: ForecastDatabase
 ) {
+
     fun getCurrent() = liveData(Dispatchers.IO) {
         val a = currentDatabase.currentDao().get()
 
@@ -31,61 +33,29 @@ class WeatherRepository @Inject constructor(
         else
             emit(
                 Resource.loading(
-                    currentDatabase.currentDao().get(),
+                    data = currentDatabase.currentDao().get(),
                     message = "db_full"
                 )
             )
 
-        try {
-            currentDatabase.currentDao()
-                .insert(api.getCurrentByName())
-            emit(
-                Resource.success(
-                    currentDatabase.currentDao().get(),
-                    message = null
+        if (Setting.SHOULD_UPDATE) {
+            try {
+                currentDatabase.currentDao()
+                    .insert(api.getCurrentByGPS())
+                emit(
+                    Resource.success(
+                        currentDatabase.currentDao().get(),
+                        message = null
+                    )
                 )
-            )
 
-            Log.d("mosix", "saving....")
+                Log.d("mosix", "saving.... c")
 
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+            } catch (exception: Exception) {
+                emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+            }
+            Setting.SHOULD_UPDATE = false
         }
-    }
-
-    fun searchByName(city: String) = liveData(Dispatchers.IO) {
-        emit(
-            Resource.loading(
-                data = null,
-                message = "loading"
-            )
-        )
-        try {
-            emit(Resource.success(api.searchByName(city = city), message = null))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
-        }
-
-    }
-
-    fun searchByGPS(latitude: Double, longitudes: Double) = liveData(Dispatchers.IO) {
-        emit(
-            Resource.loading(
-                data = null,
-                message = "loading"
-            )
-        )
-        try {
-            emit(
-                Resource.success(
-                    api.searchByGPS(lat = latitude, lon = longitudes),
-                    message = null
-                )
-            )
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
-        }
-
     }
 
     fun getForecast() = liveData(Dispatchers.IO) {
@@ -106,18 +76,20 @@ class WeatherRepository @Inject constructor(
                 )
             )
 
-        try {
-            forecastDatabase.forecastDao()
-                .insert(api.getForecastByName())
-            emit(
-                Resource.success(
-                    forecastDatabase.forecastDao().get(),
-                    message = null
+        if (Setting.SHOULD_UPDATE) {
+            try {
+                forecastDatabase.forecastDao()
+                    .insert(api.getForecastByGPS())
+                emit(
+                    Resource.success(
+                        forecastDatabase.forecastDao().get(),
+                        message = null
+                    )
                 )
-            )
-            Log.d("mosix", "saving...f")
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "f_Error occurred"))
+                Log.d("mosix", "saving...f")
+            } catch (exception: Exception) {
+                emit(Resource.error(data = null, message = exception.message ?: "f_Error occurred"))
+            }
         }
     }
 
@@ -152,5 +124,41 @@ class WeatherRepository @Inject constructor(
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
         }
+    }
+
+
+    fun searchByName(city: String) = liveData(Dispatchers.IO) {
+        emit(
+            Resource.loading(
+                data = null,
+                message = "loading"
+            )
+        )
+        try {
+            emit(Resource.success(api.searchByName(city = city), message = null))
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+        }
+
+    }
+
+    fun searchByGPS(latitude: Double, longitudes: Double) = liveData(Dispatchers.IO) {
+        emit(
+            Resource.loading(
+                data = null,
+                message = "loading"
+            )
+        )
+        try {
+            emit(
+                Resource.success(
+                    api.searchByGPS(lat = latitude, lon = longitudes),
+                    message = null
+                )
+            )
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+        }
+
     }
 }

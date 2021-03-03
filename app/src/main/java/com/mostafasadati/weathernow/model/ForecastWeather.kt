@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken
 @Entity(tableName = "forecast_table")
 data class ForecastWeather(
     @PrimaryKey
+    val i: Int,
     @Embedded
     val city: City,
     val cnt: Int,
@@ -25,7 +26,6 @@ data class City(
     val coord: Coord,
     val country: String,
     val id: Int,
-    @PrimaryKey
     val name: String,
     val population: Long,
     val sunrise: Long,
@@ -85,7 +85,6 @@ data class Wind(
     val speed: Double
 )
 
-
 class ConvertForecastList {
     @TypeConverter
     fun restoreList(value: List<ForecastList>): String {
@@ -101,7 +100,6 @@ class ConvertForecastList {
         return gson.fromJson(value, type)
     }
 }
-
 
 class ConvertWeatherList {
     @TypeConverter

@@ -44,8 +44,15 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
+
         if (args.SearchResult != null) {
-            Setting.city = args.SearchResult!!.name
+
+            if (args.SearchResult!!.local_names != null)
+                Setting.city = args.SearchResult!!.local_names!!.feature_name!!
+            else
+                Setting.city = args.SearchResult!!.name
+
             Setting.country = args.SearchResult!!.country
             Setting.lat = args.SearchResult!!.lat
             Setting.lon = args.SearchResult!!.lon
@@ -58,7 +65,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         mediaPlayer = MediaPlayer()
 
         loadData()
-        setHasOptionsMenu(true)
 
         pollution_layout.setOnClickListener {
             if (expandable_layout_0.isExpanded)
@@ -100,7 +106,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             .observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> {
-                        Log.d("mosif", "loading forecast" + it.message)
+                        Log.d("mosif", "loading forecast " + it.message)
 
                         if (it.message == "f_db_full") {
                             setForecastData(it.data!!)
@@ -156,6 +162,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun setForecastData(it: ForecastWeather) {
+        Log.d("forecastX", it.city.name)
         val adapter = ForecastAdapter(it)
 
         forecast_recyclerview.layoutManager =
@@ -209,10 +216,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_search -> {
-                openDialog()
+                openSearch()
                 true
             }
             R.id.refresh -> {
+                Setting.SHOULD_UPDATE = true
                 loadData()
                 true
             }
@@ -220,7 +228,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         }
     }
 
-    private fun openDialog() {
+    private fun openSearch() {
         val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
         findNavController().navigate(action)
     }

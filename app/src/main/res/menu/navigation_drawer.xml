@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-
     <item
-        android:id="@+id/map"
+        android:id="@+id/mapFragment"
         android:icon="@drawable/ic_map_black_24dp"
         android:title="@string/map" />
     <item
-        android:id="@+id/setting"
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="@string/setting" />
     <item
@@ -21,10 +20,7 @@
     <item android:title="@string/other">
 
         <menu>
-            <!-- <item
-                 android:id="@+id/help"
-                 android:icon="@drawable/ic_help_black_24dp"
-                 android:title="@string/help" />-->
+
             <item
                 android:id="@+id/report"
                 android:icon="@drawable/ic_report_problem_black_24dp"

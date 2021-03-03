@@ -30,15 +30,16 @@
             app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.mostafasadati.weathernow.ui.SearchFragment"
-        android:label="search_fragment"
+        android:label="Search City"
         tools:layout="@layout/search_fragment">
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
@@ -53,16 +54,11 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.mostafasadati.weathernow.ui.MapFragment"
-        android:label="map_fragment"
+        android:label="Weather Map"
         tools:layout="@layout/map_fragment" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.mostafasadati.weathernow.ui.SettingsFragment"
-        android:label="SettingsFragment" />
-    <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.mostafasadati.weathernow.ui.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+        android:label="Setting" />
 
 </navigation>
