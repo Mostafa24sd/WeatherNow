@@ -166,6 +166,11 @@ fun searchListVisibility(view: View, status: Status) {
 }
 
 //Temp
+@BindingAdapter("setTempDescription")
+fun setTempDescription(view: TextView, desc: String) {
+    view.text = desc.capitalize()
+}
+
 @BindingAdapter("setTempBg")
 fun setTempBg(view: ImageView, temp: Double) {
     val temperature = temp.roundToInt()

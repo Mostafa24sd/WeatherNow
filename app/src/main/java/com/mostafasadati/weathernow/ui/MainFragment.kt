@@ -1,5 +1,8 @@
 package com.mostafasadati.weathernow.ui
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
+import android.content.Intent
 import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.media.MediaPlayer
@@ -25,10 +28,12 @@ import com.mostafasadati.weathernow.databinding.MainFragmentBinding
 import com.mostafasadati.weathernow.model.CurrentWeather
 import com.mostafasadati.weathernow.model.ForecastWeather
 import com.mostafasadati.weathernow.viewmodel.WeatherViewModel
+import com.mostafasadati.weathernow.widgets.WidgetProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.current_top_state.*
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.util.*
+
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.main_fragment) {
@@ -159,6 +164,10 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }
 
         last_update_txt.text = getDate(Setting.lastUpdate)
+
+        val updateWidgetIntent = Intent(context, WidgetProvider::class.java)
+        updateWidgetIntent.action = WidgetProvider.CONSTANT_VALUE
+        requireContext().sendBroadcast(updateWidgetIntent)
     }
 
     private fun setForecastData(it: ForecastWeather) {
