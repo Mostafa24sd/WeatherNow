@@ -58,21 +58,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            setPollutionIcon="@{pollution.list.get(0).main.aqi}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:src="@drawable/p_good" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Air Quality: "
+                            android:text="@string/air_quality"
                             android:textAlignment="center"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+                            android:textSize="@dimen/_18ssp" />
 
                         <TextView
-                            setAirQualityTextColor="@{pollution.list.get(0).main.aqi}"
+                            setPollutionText="@{pollution}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+                            android:textSize="@dimen/_18ssp"
+                            tools:text="150" />
 
                     </LinearLayout>
 

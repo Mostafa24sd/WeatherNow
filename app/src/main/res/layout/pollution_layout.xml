@@ -15,12 +15,12 @@
         android:layout_height="@dimen/_80sdp">
 
         <LinearLayout
+            setPollutionBg='@{pollution.list.get(0).main.aqi}'
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp"
-            setPollutionBg='@{pollution.list.get(0).main.aqi}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -39,7 +40,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CO"
+                        android:text="@string/co"
                         android:textAlignment="center" />
 
                     <TextView
@@ -60,7 +61,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="NO"
+                        android:text="@string/no"
                         android:textAlignment="center" />
 
                     <TextView
@@ -81,7 +82,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="NO2"
+                        android:text="@string/no2"
                         android:textAlignment="center" />
 
                     <TextView
@@ -102,7 +103,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="O3"
+                        android:text="@string/o3"
                         android:textAlignment="center" />
 
                     <TextView
@@ -120,7 +121,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp">
+                android:layout_marginTop="@dimen/_10sdp"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -131,7 +133,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="SO2"
+                        android:text="@string/so2"
                         android:textAlignment="center" />
 
                     <TextView
@@ -152,7 +154,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="PM2.5"
+                        android:text="@string/pm2_5"
                         android:textAlignment="center" />
 
                     <TextView
@@ -173,7 +175,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="PM10"
+                        android:text="@string/pm10"
                         android:textAlignment="center" />
 
                     <TextView
@@ -194,7 +196,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="NH3"
+                        android:text="@string/nh3"
                         android:textAlignment="center" />
 
                     <TextView

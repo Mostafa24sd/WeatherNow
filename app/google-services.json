@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "200704150294",
+    "project_id": "weathernow-8d599",
+    "storage_bucket": "weathernow-8d599.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200704150294:android:1d340cd230c3a660509e37",
+        "android_client_info": {
+          "package_name": "com.mostafasadati.weathernow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200704150294-cs97ciiql60q0u4ejnbi4aktu4flhu5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyHRqlABuUNmtJBFGAtC0kxalSAEkKQ1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200704150294-cs97ciiql60q0u4ejnbi4aktu4flhu5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

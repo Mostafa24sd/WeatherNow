@@ -2,15 +2,19 @@ package com.mostafasadati.weathernow
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.AnimationDrawable
-import android.util.Log
 import android.view.View
-import android.view.animation.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
+import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
+import com.mostafasadati.weathernow.model.Pollution
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -144,14 +148,15 @@ fun gpsVisibility(view: View, status: Status) {
 
 @BindingAdapter("errorVisibility")
 fun errorVisibility(view: TextView, status: Status) {
+    val context = view.context
     when (status) {
         Status.ERROR -> {
             view.visibility = View.VISIBLE
-            view.text = "Error occurred"
+            view.text = context.getString(R.string.error_occurred)
         }
         Status.NOT_FOUND -> {
             view.visibility = View.VISIBLE
-            view.text = "Not Found"
+            view.text = context.getString(R.string.not_found)
         }
         else -> view.visibility = View.GONE
     }
@@ -175,7 +180,7 @@ fun setTempDescription(view: TextView, desc: String) {
 fun setTempBg(view: ImageView, temp: Double) {
     val temperature = temp.roundToInt()
 
-    if (Setting.unit == Unit.metric) {
+    if (Setting.unit == Unit.Metric) {
         when {
             temperature <= 25 -> view.setImageResource(R.drawable.background_very_low_warm)
             temperature <= 30 -> view.setImageResource(R.drawable.background_low_warm)
@@ -222,7 +227,7 @@ fun setThermometer(view: ImageView, temp: Double) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter("setTempTxt")
 fun setTempTxt(tempTxt: TextView, temp: Double) {
-    if (Setting.unit == Unit.metric)
+    if (Setting.unit == Unit.Metric)
         tempTxt.text = temp.roundToInt().toString() + 0x00B0.toChar() + "C"
     else
         tempTxt.text = temp.roundToInt().toString() + 0x00B0.toChar() + "F"
@@ -231,7 +236,7 @@ fun setTempTxt(tempTxt: TextView, temp: Double) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter("setFeelTempTxt")
 fun setFeelTempTxt(tempTxt: TextView, temp: Double) {
-    if (Setting.unit == Unit.metric)
+    if (Setting.unit == Unit.Metric)
         tempTxt.text = "Feels like: " + temp.roundToInt().toString() + 0x00B0.toChar() + "C"
     else
         tempTxt.text = "Feels like: " + temp.roundToInt().toString() + 0x00B0.toChar() + "F"
@@ -281,29 +286,14 @@ fun setHumidityTxt(tempTxt: TextView, temp: Double) {
 }
 
 //Pollution
-@BindingAdapter("setAirQualityTextColor")
-fun setAirQualityTextColor(textView: TextView, aqi: Int) {
-    when (aqi) {
-        1 -> {
-//            textView.setTextColor(Color.GREEN)
-            textView.text = "Good"
-        }
-        2 -> {
-//            textView.setTextColor(Color.parseColor("#ACFA58"))
-            textView.text = "Fair"
-        }
-        3 -> {
-//            textView.setTextColor(Color.parseColor("#F3F781"))
-            textView.text = "Moderate"
-        }
-        4 -> {
-//            textView.setTextColor(Color.parseColor("#D8D8D8"))
-            textView.text = "Poor"
-        }
-        5 -> {
-//            textView.setTextColor(Color.parseColor("#848484"))
-            textView.text = "Very poor"
-        }
+@BindingAdapter("setPollutionText")
+fun setPollutionText(textView: TextView, pollution: Pollution?) {
+    var description = ""
+
+    if (pollution != null) {
+        description = getPollutionDescription(pollution.list[0].main.aqi)
+
+        textView.text = "$description (${pollution.aqiIndex})"
     }
 }
 
@@ -318,13 +308,19 @@ fun setPollutionBg(view: LinearLayout, type: Int) {
     }
 }
 
+@BindingAdapter("setPollutionIcon")
+fun setPollutionIcon(view: ImageView, type: Int) {
+    view.setImageResource(getPollutionIcon(type))
+}
+
 //Wind
 @BindingAdapter("setWindTxt")
 fun setWindTxt(windTxt: TextView, speed: Double) {
-    if (Setting.unit == Unit.metric)
-        windTxt.text = "$speed meter/s"
+    val context = windTxt.context
+    if (Setting.unit == Unit.Metric)
+        windTxt.text = speed.toString() + context.getString(R.string.meter_p_second)
     else
-        windTxt.text = "$speed miles/h"
+        windTxt.text = speed.toString() + context.getString(R.string.miles_p_hour)
 
 }
 
@@ -340,7 +336,7 @@ fun setArrowImg(arrow: ImageView, deg: Double) {
 
 @BindingAdapter("setTurbineAnimation")
 fun setTurbineAnimation(turbine: LottieAnimationView, speed: Double) {
-    if (Setting.unit == Unit.metric)
+    if (Setting.unit == Unit.Metric)
         turbine.speed = speed.toFloat()
     else
         turbine.speed = (speed / 2.24).toFloat()
@@ -355,7 +351,7 @@ fun setWindDirectionAnim(turbine: LottieAnimationView, deg: Double) {
 
 @BindingAdapter("setLinesAnimation")
 fun setLinesAnimation(lines: LottieAnimationView, speed: Double) {
-    if (Setting.unit == Unit.metric)
+    if (Setting.unit == Unit.Metric)
         lines.speed = (speed / 3).toFloat()
     else
         lines.speed = (speed / 6.72).toFloat()
@@ -415,6 +411,15 @@ fun setFlagImg(imageView: ImageView, countryCode: String) {
     imageView.setImageResource(drawableId)
 }
 
+//Map
+@BindingAdapter("mapVisibility")
+fun mapVisibility(view: WebView, status: Status) {
+    when (status) {
+        Status.SUCCESS -> view.visibility = View.VISIBLE
+        else -> view.visibility = View.GONE
+    }
+}
+
 fun getWindDirection(d: Double): String? {
     var direction: String? = ""
     val deg = d.roundToInt()
@@ -439,7 +444,7 @@ fun getWindDirection(d: Double): String? {
     return direction
 }
 
-private fun unixToTime(unixSeconds: Long): String? {
+private fun unixToTime(unixSeconds: Long): String {
     val calendar = Calendar.getInstance(
         TimeZone.getTimeZone("GMT"),
         Locale.getDefault()
@@ -476,3 +481,33 @@ fun getDayOfWeek(str: String?): String? {
     }
     return dayOfWeek
 }
+
+fun getPollutionIcon(type: Int): Int =
+    when (type) {
+        1, 2 -> R.drawable.p_good
+        3 -> R.drawable.p_moderate
+        4 -> R.drawable.p_poor
+        5 -> R.drawable.p_very_poor
+
+        else -> R.drawable.p_good
+    }
+
+fun getPollutionDescription(a: Int) =
+    when (a) {
+        1 -> {
+            "Good"
+        }
+        2 -> {
+            "Fair"
+        }
+        3 -> {
+            "Moderate"
+        }
+        4 -> {
+            "Poor"
+        }
+        5 -> {
+            "Very poor"
+        }
+        else -> "Unknown"
+    }

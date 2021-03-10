@@ -2,7 +2,6 @@ package com.mostafasadati.weathernow.ui
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
@@ -13,7 +12,6 @@ import com.mostafasadati.weathernow.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 navController.navigate(R.id.settingsFragment)
             }
             R.id.report -> {
-                Toast.makeText(this, "sssssssssss", Toast.LENGTH_SHORT).show()
+                throw RuntimeException("Test Crash") // Force a crash
             }
         }
 

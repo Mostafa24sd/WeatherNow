@@ -7,6 +7,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
+import com.mostafasadati.weathernow.PollutionCalculator
 
 @Entity(tableName = "pollution_table")
 data class Pollution(
@@ -16,7 +17,12 @@ data class Pollution(
     val list: List<PollutionList>,
     @Embedded
     val coord: Coord
-)
+) {
+    val aqiIndex: String
+        get() {
+            return PollutionCalculator.calculateAqi(list[0].components.pm2_5).toString()
+        }
+}
 
 data class Coord(
     val lon: Float,

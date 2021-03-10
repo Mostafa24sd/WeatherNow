@@ -9,7 +9,7 @@ import com.mostafasadati.weathernow.model.*
 
 @Database(
     entities = [ForecastWeather::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(ConvertForecastList::class, ConvertWeatherList::class)

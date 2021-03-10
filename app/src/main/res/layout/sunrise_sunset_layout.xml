@@ -9,6 +9,7 @@
 
     <LinearLayout
         android:id="@+id/sun_layout"
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"
         android:background="@drawable/sunset_back"

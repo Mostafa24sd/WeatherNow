@@ -46,7 +46,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Temp"
+                    android:text="@string/temp"
                     android:textAlignment="center"
                     android:textColor="#696363"
                     android:textSize="@dimen/_13ssp" />
@@ -74,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:baselineAligned="false"
                     android:gravity="center"
                     android:orientation="horizontal">
 

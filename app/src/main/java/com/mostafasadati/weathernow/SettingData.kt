@@ -2,7 +2,6 @@ package com.mostafasadati.weathernow
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import java.lang.Exception
 
 class SettingData {
@@ -25,10 +24,10 @@ class SettingData {
             val sharedPref = context.getSharedPreferences(SETTING_FILE_NAME, Context.MODE_PRIVATE)
             Setting.city = sharedPref.getString("CITY", "Tehran")!!
             Setting.country = sharedPref.getString("COUNTRY", "IR")!!
-            Setting.unit = stringToUnit(sharedPref.getString("unit", Unit.metric.name)!!)
+            Setting.unit = stringToUnit(sharedPref.getString("unit", Unit.Metric.name)!!)
             Setting.audio = sharedPref.getBoolean("audio", true)
             Setting.widgetColor =
-                stringToWidgetColor(sharedPref.getString("widget_color", WidgetColor.light.name)!!)
+                stringToWidgetColor(sharedPref.getString("widget_color", WidgetColor.Light.name)!!)
             Setting.lat = sharedPref.getFloat("LAT", 35.6944f)
             Setting.lon = sharedPref.getFloat("LON", 51.4215f)
             Setting.lastUpdate = sharedPref.getLong("LAST_UPDATE", 0)
@@ -38,7 +37,7 @@ class SettingData {
             return try {
                 Unit.valueOf(s)
             } catch (ex: Exception) {
-                Unit.metric
+                Unit.Metric
             }
         }
 
@@ -46,7 +45,7 @@ class SettingData {
             return try {
                 WidgetColor.valueOf(s)
             } catch (ex: Exception) {
-                WidgetColor.light
+                WidgetColor.Light
             }
 
         }

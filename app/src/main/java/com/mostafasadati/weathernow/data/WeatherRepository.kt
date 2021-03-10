@@ -1,6 +1,5 @@
 package com.mostafasadati.weathernow.data
 
-import android.util.Log
 import androidx.lifecycle.liveData
 import com.mostafasadati.weathernow.Resource
 import com.mostafasadati.weathernow.Setting
@@ -49,8 +48,6 @@ class WeatherRepository @Inject constructor(
                     )
                 )
 
-                Log.d("mosix", "saving.... c")
-
             } catch (exception: Exception) {
                 emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
             }
@@ -86,7 +83,6 @@ class WeatherRepository @Inject constructor(
                         message = null
                     )
                 )
-                Log.d("mosix", "saving...f")
             } catch (exception: Exception) {
                 emit(Resource.error(data = null, message = exception.message ?: "f_Error occurred"))
             }
@@ -120,7 +116,6 @@ class WeatherRepository @Inject constructor(
                     message = null
                 )
             )
-            Log.d("mosix", "P saving....")
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
         }

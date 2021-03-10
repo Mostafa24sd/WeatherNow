@@ -7,9 +7,9 @@ class Setting {
         var country: String = "IR"
         var lat: Float = 35.6944f
         var lon: Float = 51.4215f
-        var unit: Unit = Unit.metric
+        var unit: Unit = Unit.Metric
         var audio: Boolean = true
-        var widgetColor: WidgetColor = WidgetColor.light
+        var widgetColor: WidgetColor = WidgetColor.Light
         var lastUpdate: Long = 0
     }
 }

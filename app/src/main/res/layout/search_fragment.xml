@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="status"
             type="com.mostafasadati.weathernow.Status" />
@@ -51,28 +52,16 @@
             app:lottie_fileName="location.json"
             app:lottie_loop="true" />
 
-        <LinearLayout
+        <TextView
             android:id="@+id/gps"
             gpsVisibility="@{status}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:paddingStart="@dimen/_10sdp"
-            background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_baseline_location_on_24" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:text="@string/search_by_gps" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="20dp"
+            android:text="@string/search_by_gps"
+            app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

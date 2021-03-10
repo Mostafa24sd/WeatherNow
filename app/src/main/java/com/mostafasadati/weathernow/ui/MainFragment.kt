@@ -1,13 +1,10 @@
 package com.mostafasadati.weathernow.ui
 
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Intent
 import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -28,12 +25,13 @@ import com.mostafasadati.weathernow.databinding.MainFragmentBinding
 import com.mostafasadati.weathernow.model.CurrentWeather
 import com.mostafasadati.weathernow.model.ForecastWeather
 import com.mostafasadati.weathernow.viewmodel.WeatherViewModel
-import com.mostafasadati.weathernow.widgets.WidgetProvider
+import com.mostafasadati.weathernow.widgets.WidgetCurrentProvider
+import com.mostafasadati.weathernow.widgets.WidgetForecastProvider
+import com.mostafasadati.weathernow.widgets.WidgetPollutionProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.current_top_state.*
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.util.*
-
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.main_fragment) {
@@ -77,8 +75,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             else
                 expandable_layout_0.expand()
         }
-
     }
+
 
     private fun loadData() {
         viewModel.getCurrent()
@@ -88,19 +86,15 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
                 when (it.status) {
                     Status.LOADING -> {
-                        Log.d("mosix", "loading " + it.message)
-
                         if (it.message == "db_full") {
                             setCurrentData(it.data!!)
                         }
                     }
                     Status.ERROR -> {
-                        Log.d("mosix", "Error " + it.message)
-                        Toast.makeText(context, "Network error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
 
                     }
                     Status.SUCCESS -> {
-                        Log.d("mosix", "Success ")
                         setCurrentData(it.data!!)
                         Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show()
                     }
@@ -111,19 +105,15 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             .observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> {
-                        Log.d("mosif", "loading forecast " + it.message)
-
                         if (it.message == "f_db_full") {
                             setForecastData(it.data!!)
                         }
                     }
                     Status.ERROR -> {
-                        Log.d("mosif", "Error " + it.message)
+                        Toast.makeText(context, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                     }
                     Status.SUCCESS -> {
-                        Log.d("mosif", "Success forecast")
-                        Log.d("mosif", it.data?.city?.name!!)
-                        setForecastData(it.data)
+                        setForecastData(it.data!!)
                     }
                 }
             }
@@ -132,17 +122,14 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             .observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> {
-                        Log.d("mosiz", "loading " + it.message)
-
                         if (it.message == "P db_full") {
                             binding.pollution = it.data
                         }
                     }
                     Status.ERROR -> {
-                        Log.d("mosiz", "P Error " + it.message)
+                        Toast.makeText(context, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
                     }
                     Status.SUCCESS -> {
-                        Log.d("mosiz", "Success ")
                         binding.pollution = it.data
                     }
                 }
@@ -165,13 +152,17 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         last_update_txt.text = getDate(Setting.lastUpdate)
 
-        val updateWidgetIntent = Intent(context, WidgetProvider::class.java)
-        updateWidgetIntent.action = WidgetProvider.CONSTANT_VALUE
+        val updateWidgetIntent = Intent(context, WidgetCurrentProvider::class.java)
         requireContext().sendBroadcast(updateWidgetIntent)
+
+        val updateFWidgetIntent = Intent(context, WidgetForecastProvider::class.java)
+        requireContext().sendBroadcast(updateFWidgetIntent)
+
+        val updatePWidgetIntent = Intent(context, WidgetPollutionProvider::class.java)
+        requireContext().sendBroadcast(updatePWidgetIntent)
     }
 
     private fun setForecastData(it: ForecastWeather) {
-        Log.d("forecastX", it.city.name)
         val adapter = ForecastAdapter(it)
 
         forecast_recyclerview.layoutManager =

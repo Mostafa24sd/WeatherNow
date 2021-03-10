@@ -35,13 +35,13 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
         if (sharedPreferences.contains(key)) {
             Setting.unit =
-                SettingData.stringToUnit(sharedPreferences.getString("unit", Unit.metric.name)!!)
+                SettingData.stringToUnit(sharedPreferences.getString("unit", Unit.Metric.name)!!)
             Setting.audio = sharedPreferences.getBoolean("audio", true)
             Setting.widgetColor =
                 SettingData.stringToWidgetColor(
                     sharedPreferences.getString(
                         "widget_color",
-                        WidgetColor.light.name
+                        WidgetColor.Light.name
                     )!!
                 )
         }

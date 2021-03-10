@@ -8,15 +8,12 @@
 
     <application
         android:name=".di.App"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherNow">
-        <activity android:name=".widgets.WidgetConfigActivity">
 
-        </activity>
         <activity
             android:name=".ui.MainActivity"
             android:launchMode="singleTop">
@@ -27,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".widgets.WidgetProvider">
+        <receiver android:name=".widgets.WidgetCurrentProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -40,6 +37,35 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/current_widget_info" />
         </receiver>
+
+        <receiver android:name=".widgets.WidgetForecastProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="AUTO_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/forecast_widget_info" />
+        </receiver>
+
+        <receiver android:name=".widgets.WidgetPollutionProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="AUTO_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/pollution_widget_info" />
+        </receiver>
+
     </application>
 
 </manifest>

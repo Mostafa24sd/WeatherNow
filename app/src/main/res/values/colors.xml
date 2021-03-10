@@ -11,10 +11,5 @@
     <color name="temp_blue">#5FC2ED</color>
     <color name="temp_red">#EC2B2B</color>
     <color name="day_text_color">#121111</color>
-    <color name="q_good">#2BF357</color>
-    <color name="q_fair">#81FB9B</color>
-    <color name="q_moderate">#E0FDE3</color>
-    <color name="q_poor">#FFAFAF</color>
-    <color name="q_very_poor">#F88C8C</color>
 
 </resources>

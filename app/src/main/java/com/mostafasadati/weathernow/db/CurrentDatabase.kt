@@ -10,7 +10,7 @@ import com.mostafasadati.weathernow.model.CurrentWeather
 
 @Database(
     entities = [CurrentWeather::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(ConvertList::class)

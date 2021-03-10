@@ -10,7 +10,7 @@ import com.mostafasadati.weathernow.model.Pollution
 
 @Database(
     entities = [Pollution::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(ConvertPollutionList::class)
