@@ -6,10 +6,14 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.IntentSender
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
+import android.os.Looper.getMainLooper
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
@@ -19,7 +23,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
+import com.google.android.gms.tasks.Task
 import com.mostafasadati.weathernow.R
 import com.mostafasadati.weathernow.Resource
 import com.mostafasadati.weathernow.Setting
@@ -37,7 +43,8 @@ import kotlinx.android.synthetic.main.search_fragment.*
 class SearchFragment : Fragment(R.layout.search_fragment) {
     private val viewModel by viewModels<SearchViewModel>()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationRequest: LocationRequest
+    private lateinit var request: LocationRequest
+    private lateinit var builder: LocationSettingsRequest.Builder
     private lateinit var locationCallback: LocationCallback
     private lateinit var bindings: SearchFragmentBinding
 
@@ -57,34 +64,6 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         setHasOptionsMenu(true)
     }
 
-    private fun checkLocation() {
-
-        val manager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            showAlertLocation()
-        }
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        getLocationUpdates()
-    }
-
-    private fun getLocationUpdates() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-        locationRequest = LocationRequest()
-        locationRequest.interval = 50000
-        locationRequest.fastestInterval = 50000
-        locationRequest.smallestDisplacement = 170f //170 m = 0.1 mile
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
-                locationResult ?: return
-                if (locationResult.locations.isNotEmpty()) {
-                    val location = locationResult.lastLocation
-                    searchByGPS(location)
-                }
-            }
-        }
-    }
-
     private fun searchByGPS(location: Location) {
         viewModel.searchByGPS(latitude = location.latitude, longitudes = location.longitude)
             .observe(viewLifecycleOwner) {
@@ -99,40 +78,6 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
             }
     }
 
-    private fun showAlertLocation() {
-        val dialog = AlertDialog.Builder(context)
-        dialog.setMessage("Your location settings is set to Off, Please enable location to search by gps")
-        dialog.setPositiveButton("Settings") { _, _ ->
-            val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            startActivity(myIntent)
-        }
-        dialog.setNegativeButton("Cancel") { _, _ ->
-        }
-        dialog.setCancelable(false)
-        dialog.show()
-
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun startLocationUpdates() {
-
-        fusedLocationClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback,
-            null
-        )
-    }
-
-    private fun stopLocationUpdates() {
-        if (this::locationCallback.isInitialized)
-            fusedLocationClient.removeLocationUpdates(locationCallback)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        stopLocationUpdates()
-    }
-
     private fun checkPermission() {
 
         val permissions =
@@ -144,10 +89,61 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         Permissions.check(requireContext(), permissions, null, null, object : PermissionHandler() {
             override fun onGranted() {
                 bindings.status = Status.LOADING
-                checkLocation()
+
+                request = LocationRequest.create()
+                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+
+                builder = LocationSettingsRequest.Builder().addLocationRequest(request)
+
+                val result: Task<LocationSettingsResponse> =
+                    LocationServices.getSettingsClient(context)
+                        .checkLocationSettings(builder.build())
+
+                result.addOnFailureListener {
+                    if (it is ResolvableApiException) {
+                        try {
+                            val resolvable = it
+                            resolvable.startResolutionForResult(requireActivity(), 8990)
+                        } catch (ex: IntentSender.SendIntentException) {
+                            ex.printStackTrace()
+                        }
+                    }
+                }
+                locationCallback = object : LocationCallback() {
+                    override fun onLocationResult(locationResult: LocationResult?) {
+                        locationResult ?: return
+
+                        if (locationResult.locations.isNotEmpty()) {
+                            val location = locationResult.lastLocation
+                            searchByGPS(location)
+                            return
+                        }
+                    }
+                }
                 startLocationUpdates()
             }
         })
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates() {
+        if (this::fusedLocationClient.isInitialized && this::request.isInitialized && this::locationCallback.isInitialized)
+            fusedLocationClient.requestLocationUpdates(
+                request,
+                locationCallback,
+                getMainLooper()
+            )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startLocationUpdates()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (this::fusedLocationClient.isInitialized && this::locationCallback.isInitialized)
+            fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -199,19 +195,5 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
-    override fun onDetach() {
-        hideKeyboard()
-        super.onDetach()
-    }
 
-    private fun hideKeyboard() {
-        val imm: InputMethodManager =
-            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-
-        var view = requireActivity().currentFocus
-        if (view == null) {
-            view = View(activity)
-        }
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
-    }
 }
