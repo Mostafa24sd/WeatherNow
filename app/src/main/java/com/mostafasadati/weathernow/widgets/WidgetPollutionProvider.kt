@@ -76,7 +76,7 @@ class WidgetPollutionProvider : AppWidgetProvider() {
 
             views.setTextViewText(
                 R.id.p_widget_description,
-                getPollutionDescription(it.data.list[0].main.aqi)
+                getPollutionDescription(context,it.data.list[0].main.aqi)
             )
             views.setImageViewResource(
                 R.id.p_widget_img,
@@ -87,7 +87,7 @@ class WidgetPollutionProvider : AppWidgetProvider() {
             )
 
             if (it.status == Status.SUCCESS) {
-                Toast.makeText(context, "P Widget Successful", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "P Widget Successful", Toast.LENGTH_SHORT).show()
                 return
             }
         }

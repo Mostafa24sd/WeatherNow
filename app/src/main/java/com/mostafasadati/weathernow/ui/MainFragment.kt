@@ -40,7 +40,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private lateinit var mediaPlayer: MediaPlayer
 
-    lateinit var binding: MainFragmentBinding
+    private var _binding: MainFragmentBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel by viewModels<WeatherViewModel>()
 
@@ -48,6 +49,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
+
+        _binding = MainFragmentBinding.bind(view)
 
         if (args.SearchResult != null) {
 
@@ -62,7 +65,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             SettingData.saveSetting(requireContext())
         }
 
-        binding = MainFragmentBinding.bind(view)
         binding.status = Status.LOADING
 
         mediaPlayer = MediaPlayer()
@@ -75,8 +77,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             else
                 expandable_layout_0.expand()
         }
-    }
 
+    }
 
     private fun loadData() {
         viewModel.getCurrent()
@@ -91,7 +93,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                         }
                     }
                     Status.ERROR -> {
-                        Toast.makeText(context, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            getString(R.string.network_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                     }
                     Status.SUCCESS -> {
@@ -110,7 +116,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                         }
                     }
                     Status.ERROR -> {
-                        Toast.makeText(context, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            getString(R.string.network_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     Status.SUCCESS -> {
                         setForecastData(it.data!!)
@@ -127,7 +137,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                         }
                     }
                     Status.ERROR -> {
-                        Toast.makeText(context, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            getString(R.string.network_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     Status.SUCCESS -> {
                         binding.pollution = it.data
@@ -189,22 +203,18 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun stopAudio() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying) {
+        if (::mediaPlayer.isInitialized && mediaPlayer.isPlaying) {
             mediaPlayer.stop()
             mediaPlayer.release()
         }
     }
 
     override fun onPause() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
-        }
         super.onPause()
-    }
-
-    override fun onStop() {
-        stopAudio()
-        super.onStop()
+        if (this::mediaPlayer.isInitialized) {
+            if (mediaPlayer.isPlaying)
+                mediaPlayer.pause()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -243,33 +253,41 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val diffHours = diff / (60 * 60 * 1000) % 24
         val diffDays = diff / (24 * 60 * 60 * 1000)
 
-        var out = "Last update: "
+        var out = getString(R.string.last_update)
+
+
 
         if (diffDays > 0) {
             if (diffDays == 1L)
-                out += "$diffDays day"
+                out += " $diffDays " + getString(R.string.day)
             if (diffDays > 1)
-                out += "$diffDays days"
+                out += " $diffDays " + getString(R.string.days)
         } else if (diffHours > 0) {
             if (diffHours == 1L)
-                out += "$diffHours hour"
+                out += " $diffHours " + getString(R.string.hour)
             if (diffHours > 1)
-                out += "$diffHours hours"
+                out += " $diffHours " + getString(R.string.hours)
         } else if (diffMinutes > 0) {
             if (diffMinutes == 1L)
-                out += "$diffMinutes minute"
+                out += " $diffMinutes " + getString(R.string.min)
             if (diffMinutes > 1)
-                out += "$diffMinutes minutes"
+                out += " $diffMinutes " + getString(R.string.mins)
         } else if (diffSeconds > 0) {
             if (diffSeconds == 1L)
-                out += "$diffSeconds second"
+                out += " $diffSeconds " + getString(R.string.sec)
             if (diffSeconds > 1)
-                out += "$diffSeconds seconds"
-        } else if (diffSeconds == 0L) return out + "Just now"
+                out += " $diffSeconds " + getString(R.string.secs)
+        } else if (diffSeconds == 0L) return out + getString(R.string.just_now)
 
         Setting.lastUpdate = timeNow
         SettingData.saveSetting(requireContext())
 
-        return "$out ago"
+        return "$out " + getString(R.string.ago)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopAudio()
+        _binding = null
     }
 }

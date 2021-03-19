@@ -1,5 +1,7 @@
 package com.mostafasadati.weathernow
 
+import java.util.*
+
 class Setting {
     companion object {
         var SHOULD_UPDATE = true
@@ -9,7 +11,9 @@ class Setting {
         var lon: Float = 51.4215f
         var unit: Unit = Unit.Metric
         var audio: Boolean = true
-        var widgetColor: WidgetColor = WidgetColor.Light
+        var currentWidgetColor: WidgetColor = WidgetColor.Light
+        var forecastWidgetColor: WidgetColor = WidgetColor.Light
         var lastUpdate: Long = 0
+        var locale: Locale = Locale.US
     }
 }

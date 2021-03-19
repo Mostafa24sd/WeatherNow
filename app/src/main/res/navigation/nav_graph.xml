@@ -35,12 +35,14 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_mainFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.mostafasadati.weathernow.ui.SearchFragment"
-        android:label="Search City"
-        tools:layout="@layout/search_fragment">
+        android:label="Search City">
         <action
             android:id="@+id/action_searchFragment_to_mainFragment"
             app:destination="@id/mainFragment"
@@ -54,11 +56,15 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.mostafasadati.weathernow.ui.MapFragment"
-        android:label="Weather Map"
-        tools:layout="@layout/map_fragment" />
+        android:label="Weather Map" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.mostafasadati.weathernow.ui.SettingsFragment"
         android:label="Setting" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.mostafasadati.weathernow.ui.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
 
 </navigation>

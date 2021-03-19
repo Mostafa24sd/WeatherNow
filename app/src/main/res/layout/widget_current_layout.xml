@@ -5,7 +5,7 @@
     android:id="@+id/widget_linear_layout_current"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/round_corner"
+    android:layoutDirection="ltr"
     android:gravity="center"
     android:orientation="horizontal">
 
@@ -37,7 +37,7 @@
             android:id="@+id/widgetTempTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/exo_e_l"
             android:maxLines="1"
             android:shadowColor="#000000"
             android:shadowDx="1.5"
@@ -57,7 +57,7 @@
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/exo_e_l"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:shadowColor="#000000"

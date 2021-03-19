@@ -19,4 +19,8 @@
         <item name="android:forceDarkAllowed">false</item>
 
     </style>
+
+    <style name="PreferenceScreen" parent="Theme.WeatherNow">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

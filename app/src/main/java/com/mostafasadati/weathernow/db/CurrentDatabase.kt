@@ -10,7 +10,7 @@ import com.mostafasadati.weathernow.model.CurrentWeather
 
 @Database(
     entities = [CurrentWeather::class],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(ConvertList::class)
@@ -32,6 +32,8 @@ abstract class CurrentDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 CurrentDatabase::class.java, "CurrentDB.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

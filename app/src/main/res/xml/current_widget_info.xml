@@ -4,7 +4,7 @@
     android:minWidth="100dp"
     android:minHeight="40dp"
     android:resizeMode="none"
-    android:previewImage="@drawable/widget_logo_small_fa"
+    android:previewImage="@drawable/current_widget_preview"
     android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen">
 

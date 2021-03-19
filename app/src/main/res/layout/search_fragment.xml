@@ -21,7 +21,7 @@
             searchListVisibility="@{status}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
+            android:layout_margin="2dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/search_item" />
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/gps_margin"
             android:text="@string/search_by_gps"
             app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
             app:layout_constraintTop_toTopOf="parent" />

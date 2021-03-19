@@ -2,19 +2,29 @@ package com.mostafasadati.weathernow.ui
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.preference.PreferenceFragmentCompat
 import com.mostafasadati.weathernow.*
 import com.mostafasadati.weathernow.Unit
 
+
 class SettingsFragment : PreferenceFragmentCompat(),
     SharedPreferences.OnSharedPreferenceChangeListener {
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        requireContext().theme.applyStyle(R.style.PreferenceScreen, true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-
         preferenceManager.sharedPreferencesName = SettingData.SETTING_FILE_NAME
-
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-
     }
 
     override fun onResume() {
@@ -37,10 +47,19 @@ class SettingsFragment : PreferenceFragmentCompat(),
             Setting.unit =
                 SettingData.stringToUnit(sharedPreferences.getString("unit", Unit.Metric.name)!!)
             Setting.audio = sharedPreferences.getBoolean("audio", true)
-            Setting.widgetColor =
+
+            Setting.currentWidgetColor =
                 SettingData.stringToWidgetColor(
                     sharedPreferences.getString(
-                        "widget_color",
+                        "current_widget_color",
+                        WidgetColor.Light.name
+                    )!!
+                )
+
+            Setting.forecastWidgetColor =
+                SettingData.stringToWidgetColor(
+                    sharedPreferences.getString(
+                        "forecast_widget_color",
                         WidgetColor.Light.name
                     )!!
                 )

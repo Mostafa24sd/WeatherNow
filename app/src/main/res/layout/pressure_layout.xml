@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/pressure_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp"
+        android:layout_height="wrap_content"
         android:background="@drawable/pressure_back"
         android:orientation="horizontal">
 
@@ -34,17 +34,16 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pressure"
                 android:textAlignment="center"
-                android:textSize="@dimen/_18ssp" />
+                android:textSize="@dimen/title_txt" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/pressureTxt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/exo_e_l"
                 android:maxLines="1"
                 android:text="@{currentWeather.main.pressure + ` hpa`}"
                 android:textAlignment="center"
-                android:textSize="@dimen/_26ssp"
+                android:textSize="@dimen/big_txt"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>

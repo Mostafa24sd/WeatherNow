@@ -111,6 +111,8 @@ class MapFragment : Fragment(R.layout.map_fragment) {
         pressureButton.setOnClickListener {
             newUrl(url,"pressure")
         }
+
+
     }
 
     private fun newUrl(q: String, layer: String) {

@@ -26,11 +26,14 @@ class SettingData {
             Setting.country = sharedPref.getString("COUNTRY", "IR")!!
             Setting.unit = stringToUnit(sharedPref.getString("unit", Unit.Metric.name)!!)
             Setting.audio = sharedPref.getBoolean("audio", true)
-            Setting.widgetColor =
-                stringToWidgetColor(sharedPref.getString("widget_color", WidgetColor.Light.name)!!)
+            Setting.currentWidgetColor =
+                stringToWidgetColor(sharedPref.getString("current_widget_color", WidgetColor.Light.name)!!)
+            Setting.forecastWidgetColor =
+                stringToWidgetColor(sharedPref.getString("forecast_widget_color", WidgetColor.Light.name)!!)
             Setting.lat = sharedPref.getFloat("LAT", 35.6944f)
             Setting.lon = sharedPref.getFloat("LON", 51.4215f)
             Setting.lastUpdate = sharedPref.getLong("LAST_UPDATE", 0)
+            Setting.locale = context.resources.configuration.locale
         }
 
          fun stringToUnit(s: String): Unit {
@@ -43,7 +46,7 @@ class SettingData {
 
          fun stringToWidgetColor(s: String): WidgetColor {
             return try {
-                WidgetColor.valueOf(s)
+                WidgetColor.valueOf(s.capitalize())
             } catch (ex: Exception) {
                 WidgetColor.Light
             }

@@ -8,15 +8,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.widget.RemoteViews
-import android.widget.Toast
 import com.mostafasadati.weathernow.*
 import com.mostafasadati.weathernow.Unit
 import com.mostafasadati.weathernow.data.WeatherRepository
 import com.mostafasadati.weathernow.model.ForecastWeather
 import com.mostafasadati.weathernow.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -58,7 +55,7 @@ class WidgetForecastProvider : AppWidgetProvider() {
             R.id.f_widget_temp4
         )
 
-        if (Setting.widgetColor == WidgetColor.Dark) {
+        if (Setting.forecastWidgetColor == WidgetColor.Dark) {
             views.setInt(
                 R.id.f_widget_layout,
                 "setBackgroundResource",
@@ -139,11 +136,9 @@ class WidgetForecastProvider : AppWidgetProvider() {
                 temps[k] /= 8
                 days.add(
                     getDayOfWeek(
-                        forecastWeather.data.mList[j + (k * 8)].dt_txt.substring(
-                            0,
-                            10
-                        )
-                    )
+                        context,
+                        forecastWeather.data.mList[j + (k * 8)].dt_txt
+                    )!!
                 )
             }
 
@@ -176,7 +171,7 @@ class WidgetForecastProvider : AppWidgetProvider() {
             )
 
             if (forecastWeather.status == Status.SUCCESS) {
-                Toast.makeText(context, "F Widget Successful", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "F Widget Successful", Toast.LENGTH_SHORT).show()
                 return
             }
         }
@@ -185,7 +180,7 @@ class WidgetForecastProvider : AppWidgetProvider() {
     private fun getIcon(type: String): Int {
         val icon: Int
 
-        if (Setting.widgetColor == WidgetColor.Dark) {
+        if (Setting.forecastWidgetColor == WidgetColor.Dark) {
 
             icon = when (type) {
                 "01d" -> R.drawable.w_sunny_d
@@ -226,7 +221,7 @@ class WidgetForecastProvider : AppWidgetProvider() {
             else -> "$temp \u2109"
         }
 
-    private fun getDayOfWeek(str: String?): String {
+    /*private fun getDayOfWeek(str: String?): String {
         var date1: Date? = Date()
         try {
             date1 = SimpleDateFormat("yyyy-MM-dd").parse(str)
@@ -247,5 +242,5 @@ class WidgetForecastProvider : AppWidgetProvider() {
             7 -> dayOfWeek = "Sat"
         }
         return dayOfWeek!!
-    }
+    }*/
 }

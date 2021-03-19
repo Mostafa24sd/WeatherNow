@@ -5,9 +5,7 @@ plugins {
     id "androidx.navigation.safeargs.kotlin"
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id 'com.google.firebase.crashlytics'
     id 'com.google.gms.google-services'
-    id 'appmetrica-plugin'
 }
 
 android {
@@ -25,13 +23,6 @@ android {
 
         buildConfigField("String", "OPENWEATHERMAP_API_KEY1", openweathermap_api_key1)
         buildConfigField("String", "OPENWEATHERMAP_API_KEY2", openweathermap_api_key2)
-
-
-        appmetrica {
-            postApiKey = { applicationVariant -> "0b379f08-a16b-4f22-8b86-4d668388b1d6" }
-            // or postApiKey = "Post Api key"
-            mappingBuildTypes = ['release']
-        }
     }
 
     buildTypes {
@@ -55,20 +46,15 @@ android {
         dataBinding true
     }
 }
-
 dependencies {
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-process:2.3.0'
+    implementation 'androidx.fragment:fragment-ktx:1.3.1'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.firebase:firebase-messaging:21.0.1'
-    implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.5'
-    implementation 'androidx.work:work-runtime:2.5.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -76,17 +62,16 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.intuit.ssp:ssp-android:1.0.6'
-
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    implementation "androidx.fragment:fragment-ktx:1.3.0"
 
-    implementation 'com.airbnb.android:lottie:3.6.0'
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation 'com.airbnb.android:lottie:3.6.1'
+    implementation('com.squareup.okhttp3:okhttp:5.0.0-alpha.2')
 
+
+    // LifeCycle
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     // LiveData
@@ -106,7 +91,7 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
@@ -116,17 +101,5 @@ dependencies {
     implementation 'com.nabinbhandari.android:permissions:3.8'
 
     implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
-
-    // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:26.6.0')
-
-    // Declare the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-
-    implementation 'com.yandex.android:mobmetricalib:3.18.0'
-    implementation "com.yandex.android:mobmetricapushlib:1.10.0"
-    implementation "com.google.firebase:firebase-messaging:21.0.1"
-    implementation "com.google.android.gms:play-services-base:17.6.0"
 }
+

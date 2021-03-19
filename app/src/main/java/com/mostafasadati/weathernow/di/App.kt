@@ -3,27 +3,22 @@ package com.mostafasadati.weathernow.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.mostafasadati.weathernow.BuildConfig
 import com.mostafasadati.weathernow.SettingData
 import com.mostafasadati.weathernow.api.WeatherApi
 import com.mostafasadati.weathernow.db.CurrentDatabase
 import com.mostafasadati.weathernow.db.ForecastDatabase
 import com.mostafasadati.weathernow.db.PollutionDatabase
-import com.yandex.metrica.YandexMetrica
-import com.yandex.metrica.YandexMetricaConfig
-import com.yandex.metrica.push.YandexMetricaPush
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
 
 @HiltAndroidApp
 class App : Application() {
@@ -32,23 +27,11 @@ class App : Application() {
         super.onCreate()
 
         SettingData.loadSetting(this)
-
-        // Creating an extended library configuration.
-        val config = YandexMetricaConfig
-            .newConfigBuilder("29981406-0d1a-44df-a3cd-aabf543d0cfb")
-            .withNativeCrashReporting(false)
-            .withLocationTracking(false)
-            .withAppVersion(BuildConfig.VERSION_NAME)
-            .build()
-
-        // Initializing the AppMetrica SDK.
-        YandexMetrica.activate(applicationContext, config)
-        YandexMetrica.enableActivityAutoTracking(this)
-        YandexMetricaPush.init(applicationContext)
     }
 
+
     @Module
-    @InstallIn(ApplicationComponent::class)
+    @InstallIn(SingletonComponent::class)
     object AppModule {
 
         @Provides

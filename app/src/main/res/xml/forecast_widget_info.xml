@@ -4,7 +4,7 @@
     android:minWidth="250dp"
     android:minHeight="40dp"
     android:resizeMode="none"
-    android:previewImage="@drawable/widget_logo_large_en"
+    android:previewImage="@drawable/forecast_widget_preview"
     android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen">
 

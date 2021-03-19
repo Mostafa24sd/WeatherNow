@@ -1,6 +1,7 @@
 package com.mostafasadati.weathernow
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.drawable.AnimationDrawable
 import android.view.View
 import android.view.animation.Animation
@@ -21,7 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
-
+//Main
 @BindingAdapter("setIcon")
 fun setIcon(imageView: ImageView, type: String) {
     imageView.clearAnimation()
@@ -73,6 +74,22 @@ fun setIcon(imageView: ImageView, type: String) {
         }
 }
 
+@BindingAdapter("setTopBg")
+fun setTopBg(view: ImageView, type: String) {
+    if (type != "")
+        when (type) {
+            "01d" -> view.setImageResource(R.drawable.background_sunny)
+            "01n", "02n", "04n", "03n", "09n", "10n", "11n", "13n" -> view.setImageResource(R.drawable.background_night)
+            "02d", "04d" -> view.setImageResource(R.drawable.background_few_clouds)
+            "03d", "11d" -> view.setImageResource(R.drawable.background_light_rain)
+            "09d" -> view.setImageResource(R.drawable.background_heavy_rain)
+            "10d" -> view.setImageResource(R.drawable.background_moderate_rain)
+            "13d" -> view.setImageResource(R.drawable.background_snow)
+            "50d" -> view.setImageResource(R.drawable.background_mist)
+            "50n" -> view.setImageResource(R.drawable.background_mist_night)
+        }
+}
+
 @BindingAdapter("setAnim")
 fun setAnim(anim: LottieAnimationView, type: String) {
 
@@ -94,26 +111,9 @@ fun setAnim(anim: LottieAnimationView, type: String) {
                 else -> "sunny.json"
             }
 
-
         anim.setAnimation(animationResource)
         anim.playAnimation()
     }
-}
-
-@BindingAdapter("setTopBg")
-fun setTopBg(view: ImageView, type: String) {
-    if (type != "")
-        when (type) {
-            "01d" -> view.setImageResource(R.drawable.background_sunny)
-            "01n", "02n", "04n", "03n", "09n", "10n", "11n", "13n" -> view.setImageResource(R.drawable.background_night)
-            "02d", "04d" -> view.setImageResource(R.drawable.background_few_clouds)
-            "03d", "11d" -> view.setImageResource(R.drawable.background_light_rain)
-            "09d" -> view.setImageResource(R.drawable.background_heavy_rain)
-            "10d" -> view.setImageResource(R.drawable.background_moderate_rain)
-            "13d" -> view.setImageResource(R.drawable.background_snow)
-            "50d" -> view.setImageResource(R.drawable.background_mist)
-            "50n" -> view.setImageResource(R.drawable.background_mist_night)
-        }
 }
 
 @BindingAdapter("loadingVisibility")
@@ -236,10 +236,13 @@ fun setTempTxt(tempTxt: TextView, temp: Double) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter("setFeelTempTxt")
 fun setFeelTempTxt(tempTxt: TextView, temp: Double) {
+
     if (Setting.unit == Unit.Metric)
-        tempTxt.text = "Feels like: " + temp.roundToInt().toString() + 0x00B0.toChar() + "C"
+        tempTxt.text = temp.roundToInt()
+            .toString() + "°C"
     else
-        tempTxt.text = "Feels like: " + temp.roundToInt().toString() + 0x00B0.toChar() + "F"
+        tempTxt.text = temp.roundToInt()
+            .toString() + "°F"
 }
 
 //Humidity
@@ -291,7 +294,7 @@ fun setPollutionText(textView: TextView, pollution: Pollution?) {
     var description = ""
 
     if (pollution != null) {
-        description = getPollutionDescription(pollution.list[0].main.aqi)
+        description = getPollutionDescription(textView.context, pollution.list[0].main.aqi)
 
         textView.text = "$description (${pollution.aqiIndex})"
     }
@@ -326,7 +329,8 @@ fun setWindTxt(windTxt: TextView, speed: Double) {
 
 @BindingAdapter("setWindDeg")
 fun setWindDeg(windDeg: TextView, deg: Double) {
-    windDeg.text = getWindDirection(deg)
+    val context = windDeg.context
+    windDeg.text = getWindDirection(context, deg)
 }
 
 @BindingAdapter("setArrowImg")
@@ -392,7 +396,7 @@ fun setTextColor(textView: TextView, icon: String) {
 
 @BindingAdapter("setDayText")
 fun setDayText(textView: TextView, date: String) {
-    textView.text = getDayOfWeek(date)
+    textView.text = getDayOfWeek(textView.context,date)
 }
 
 @BindingAdapter("setTimeText")
@@ -420,27 +424,27 @@ fun mapVisibility(view: WebView, status: Status) {
     }
 }
 
-fun getWindDirection(d: Double): String? {
+fun getWindDirection(context: Context, d: Double): String? {
     var direction: String? = ""
     val deg = d.roundToInt()
 
     if (deg > 348.75 || deg >= 0 && deg <= 11.25) direction =
-        "North" else if (deg > 11.25 && deg <= 33.75) direction =
-        "North-NorthEast" else if (deg > 33.75 && deg <= 56.25) direction =
-        "North East" else if (deg > 56.25 && deg < 78.75) direction =
-        "East-NorthEast" else if (deg >= 78.75 && deg <= 101.25) direction =
-        "East" else if (deg > 101.25 && deg <= 123.75) direction =
-        "East-SouthEast" else if (deg > 123.75 && deg <= 146.25) direction =
-        "SouthEast" else if (deg > 146.25 && deg < 168.75) direction =
-        "South-SouthEast" else if (deg >= 168.75 && deg <= 191.25) direction =
-        "South" else if (deg > 191.25 && deg <= 213.75) direction =
-        "South-SouthWest" else if (deg > 213.75 && deg <= 236.25) direction =
-        "SouthWest" else if (deg > 236.25 && deg <= 258.75) direction =
-        "West-SouthWest" else if (deg > 258.75 && deg <= 281.25) direction =
-        "West" else if (deg > 281.25 && deg <= 303.75) direction =
-        "West-NorthWest" else if (deg > 303.75 && deg <= 326.25) direction =
-        "NorthWest" else if (deg > 326.25 && deg <= 348.75) direction =
-        "North-NorthWest"
+        context.getString(R.string.n) else if (deg > 11.25 && deg <= 33.75) direction =
+        context.getString(R.string.nne) else if (deg > 33.75 && deg <= 56.25) direction =
+        context.getString(R.string.ne) else if (deg > 56.25 && deg < 78.75) direction =
+        context.getString(R.string.ene) else if (deg >= 78.75 && deg <= 101.25) direction =
+        context.getString(R.string.e) else if (deg > 101.25 && deg <= 123.75) direction =
+        context.getString(R.string.ese) else if (deg > 123.75 && deg <= 146.25) direction =
+        context.getString(R.string.se) else if (deg > 146.25 && deg < 168.75) direction =
+        context.getString(R.string.sse) else if (deg >= 168.75 && deg <= 191.25) direction =
+        context.getString(R.string.s) else if (deg > 191.25 && deg <= 213.75) direction =
+        context.getString(R.string.ssw) else if (deg > 213.75 && deg <= 236.25) direction =
+        context.getString(R.string.sw) else if (deg > 236.25 && deg <= 258.75) direction =
+        context.getString(R.string.wsw) else if (deg > 258.75 && deg <= 281.25) direction =
+        context.getString(R.string.w) else if (deg > 281.25 && deg <= 303.75) direction =
+        context.getString(R.string.wnw) else if (deg > 303.75 && deg <= 326.25) direction =
+        context.getString(R.string.nw) else if (deg > 326.25 && deg <= 348.75) direction =
+        context.getString(R.string.nnw)
     return direction
 }
 
@@ -459,7 +463,7 @@ private fun unixToTime(unixSeconds: Long): String {
     return formattedDate.substring(10, 16)
 }
 
-fun getDayOfWeek(str: String?): String? {
+public fun getDayOfWeek(context: Context, str: String?): String? {
     var date1: Date? = Date()
     try {
         date1 = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(str)
@@ -471,13 +475,13 @@ fun getDayOfWeek(str: String?): String? {
     val dayNum = c[Calendar.DAY_OF_WEEK]
     var dayOfWeek: String? = ""
     when (dayNum) {
-        1 -> dayOfWeek = "Sun"
-        2 -> dayOfWeek = "Mon"
-        3 -> dayOfWeek = "Tue"
-        4 -> dayOfWeek = "Wed"
-        5 -> dayOfWeek = "Thu"
-        6 -> dayOfWeek = "Fri"
-        7 -> dayOfWeek = "Sat"
+        1 -> dayOfWeek = context.getString(R.string.sunday)
+        2 -> dayOfWeek = context.getString(R.string.monday)
+        3 -> dayOfWeek = context.getString(R.string.tue)
+        4 -> dayOfWeek = context.getString(R.string.wed)
+        5 -> dayOfWeek = context.getString(R.string.thu)
+        6 -> dayOfWeek = context.getString(R.string.fri)
+        7 -> dayOfWeek = context.getString(R.string.sat)
     }
     return dayOfWeek
 }
@@ -492,22 +496,22 @@ fun getPollutionIcon(type: Int): Int =
         else -> R.drawable.p_good
     }
 
-fun getPollutionDescription(a: Int) =
-    when (a) {
+fun getPollutionDescription(context: Context, aqi: Int) =
+    when (aqi) {
         1 -> {
-            "Good"
+            context.getString(R.string.good)
         }
         2 -> {
-            "Fair"
+            context.getString(R.string.fair)
         }
         3 -> {
-            "Moderate"
+            context.getString(R.string.moderate)
         }
         4 -> {
-            "Poor"
+            context.getString(R.string.poor)
         }
         5 -> {
-            "Very poor"
+            context.getString(R.string.very_poor)
         }
-        else -> "Unknown"
+        else -> context.getString(R.string.unknown)
     }

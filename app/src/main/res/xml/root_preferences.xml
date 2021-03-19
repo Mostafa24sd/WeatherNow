@@ -13,22 +13,30 @@
             app:title="@string/unit_title"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:defaultValue="light"
-            app:entries="@array/widget_color_entries"
-            app:entryValues="@array/widget_color_values"
-            app:key="widget_color"
-            app:title="@string/widget_color"
-            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            app:key="audio"
+            app:title="@string/sound_effects" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Audio">
+    <PreferenceCategory app:title="@string/widgets_color">
 
-        <SwitchPreferenceCompat
-            app:key="audio"
-            app:title="Sound effects"
-            android:defaultValue="true"/>
+        <ListPreference
+            app:defaultValue="light"
+            app:entries="@array/current_widget_color_entries"
+            app:entryValues="@array/current_widget_color_values"
+            app:key="current_widget_color"
+            app:title="@string/current_widget_color"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="light"
+            app:entries="@array/forecast_widget_color_entries"
+            app:entryValues="@array/forecast_widget_color_values"
+            app:key="forecast_widget_color"
+            app:title="@string/forecast_weather"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 

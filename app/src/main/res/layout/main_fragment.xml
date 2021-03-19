@@ -59,6 +59,8 @@
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:layoutDirection="locale"
+                        android:padding="@dimen/normal_padding"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -72,14 +74,14 @@
                             android:layout_height="wrap_content"
                             android:text="@string/air_quality"
                             android:textAlignment="center"
-                            android:textSize="@dimen/_18ssp" />
+                            android:textSize="@dimen/pollution_txt" />
 
                         <TextView
                             setPollutionText="@{pollution}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textSize="@dimen/_18ssp"
+                            android:textSize="@dimen/pollution_txt"
                             tools:text="150" />
 
                     </LinearLayout>
@@ -118,15 +120,16 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:paddingStart="5dp"
+                        android:layout_marginEnd="@dimen/normal_padding"
+                        android:paddingStart="@dimen/normal_padding"
                         android:text="@string/forecast"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textSize="@dimen/title_txt"
                         android:textColor="@android:color/black" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/forecast_recyclerview"
                         android:layout_width="wrap_content"
+                        android:layoutDirection="locale"
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         tools:listitem="@layout/forecast_items" />

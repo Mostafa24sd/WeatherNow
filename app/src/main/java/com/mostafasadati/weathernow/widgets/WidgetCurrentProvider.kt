@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.widget.RemoteViews
-import android.widget.Toast
 import com.mostafasadati.weathernow.*
 import com.mostafasadati.weathernow.Unit
 import com.mostafasadati.weathernow.data.WeatherRepository
@@ -38,18 +37,24 @@ class WidgetCurrentProvider : AppWidgetProvider() {
 
         views.setOnClickPendingIntent(R.id.widget_linear_layout_current, pendingIntent)
 
+        val widgetColor =
+            when (Setting.currentWidgetColor) {
+                WidgetColor.Light -> Color.BLACK
+                WidgetColor.Dark -> Color.WHITE
+                WidgetColor.Image -> Color.WHITE
+            }
+
         views.setInt(
             R.id.widgetTempTxt,
             "setTextColor",
-            Color.WHITE
+            widgetColor
         )
 
         views.setInt(
             R.id.widgetTxt,
             "setTextColor",
-            Color.WHITE
+            widgetColor
         )
-
 
         repository.getCurrent().observeForever {
             when (it.status) {
@@ -65,12 +70,29 @@ class WidgetCurrentProvider : AppWidgetProvider() {
     private fun setData(context: Context, it: Resource<CurrentWeather>) {
         if (it.data != null) {
 
-            views.setInt(
-                R.id.w_current_bg,
-                "setImageResource",
-                getBackground(it.data.weather[0].icon)
-            )
-
+            when (Setting.currentWidgetColor) {
+                WidgetColor.Image -> {
+                    views.setInt(
+                        R.id.w_current_bg,
+                        "setImageResource",
+                        getBackground(it.data.weather[0].icon)
+                    )
+                }
+                WidgetColor.Light -> {
+                    views.setInt(
+                        R.id.w_current_bg,
+                        "setImageResource",
+                        R.drawable.round_corner_light
+                    )
+                }
+                WidgetColor.Dark -> {
+                    views.setInt(
+                        R.id.w_current_bg,
+                        "setImageResource",
+                        R.drawable.round_corner_dark
+                    )
+                }
+            }
 
             views.setTextViewText(
                 R.id.widgetTxt,
@@ -91,28 +113,45 @@ class WidgetCurrentProvider : AppWidgetProvider() {
             )
 
             if (it.status == Status.SUCCESS) {
-                Toast.makeText(context, "Widget Successful", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "Widget Successful", Toast.LENGTH_SHORT).show()
                 return
             }
         }
     }
 
-    private fun getIcon(type: String) =
-        when (type) {
-            "01d" -> R.drawable.w_sunny_d
-            "01n" -> R.drawable.w_moon_d
-            "02d" -> R.drawable.w_partly_cloudy_d
-            "02n", "04n" -> R.drawable.w_partly_cloudy_night_d
-            "04d" -> R.drawable.w_partly_cloudy_d
-            "03d", "03n" -> R.drawable.w_cloudy_d
-            "09d", "09n" -> R.drawable.w_heavy_rain_d
-            "10d", "10n" -> R.drawable.w_moderate_rain_d
-            "11d", "11n" -> R.drawable.w_thunderstorm_d
-            "13d", "13n" -> R.drawable.w_light_snowing_d
-            "50d", "50n" -> R.drawable.w_mist_d
-            else -> R.drawable.w_sunny_d
-
+    private fun getIcon(type: String): Int {
+        if (Setting.currentWidgetColor == WidgetColor.Image || Setting.currentWidgetColor == WidgetColor.Dark) {
+            return when (type) {
+                "01d" -> R.drawable.w_sunny_d
+                "01n" -> R.drawable.w_moon_d
+                "02d" -> R.drawable.w_partly_cloudy_d
+                "02n", "04n" -> R.drawable.w_partly_cloudy_night_d
+                "04d" -> R.drawable.w_partly_cloudy_d
+                "03d", "03n" -> R.drawable.w_cloudy_d
+                "09d", "09n" -> R.drawable.w_heavy_rain_d
+                "10d", "10n" -> R.drawable.w_moderate_rain_d
+                "11d", "11n" -> R.drawable.w_thunderstorm_d
+                "13d", "13n" -> R.drawable.w_light_snowing_d
+                "50d", "50n" -> R.drawable.w_mist_d
+                else -> R.drawable.w_sunny_d
+            }
+        } else {
+            return when (type) {
+                "01d" -> R.drawable.w_sunny_l
+                "01n" -> R.drawable.w_moon_l
+                "02d" -> R.drawable.w_partly_cloudy_l
+                "02n", "04n" -> R.drawable.w_partly_cloudy_night_l
+                "04d" -> R.drawable.w_partly_cloudy_l
+                "03d", "03n" -> R.drawable.w_cloudy_l
+                "09d", "09n" -> R.drawable.w_heavy_rain_l
+                "10d", "10n" -> R.drawable.w_moderate_rain_l
+                "11d", "11n" -> R.drawable.w_thunderstorm_l
+                "13d", "13n" -> R.drawable.w_light_snowing_l
+                "50d", "50n" -> R.drawable.w_mist_l
+                else -> R.drawable.w_sunny_l
+            }
         }
+    }
 
     private fun getBackground(icon: String): Int {
         return when (icon) {

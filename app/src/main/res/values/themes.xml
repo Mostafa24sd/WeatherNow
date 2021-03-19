@@ -15,6 +15,9 @@
         <item name="android:fontFamily">@font/exo_e_l</item>
         <item name="android:textColor">@color/day_text_color</item>
         <item name="android:layoutDirection">ltr</item>
+    </style>
 
+    <style name="PreferenceScreen" parent="Theme.WeatherNow">
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

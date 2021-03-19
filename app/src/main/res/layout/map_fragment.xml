@@ -41,19 +41,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:paddingBottom="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/web_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/windButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/map_items_margin"
                 android:clickable="true"
                 android:focusable="true"
                 app:backgroundTint="#ffffff"
@@ -62,9 +60,10 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/rainButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/map_items_margin"
                 android:clickable="true"
                 android:focusable="true"
                 app:backgroundTint="#A9E2F3"
@@ -73,9 +72,10 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/tempButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/map_items_margin"
                 android:clickable="true"
                 android:focusable="true"
                 app:backgroundTint="#FE642E"
@@ -84,9 +84,10 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/cloudsButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/map_items_margin"
                 android:clickable="true"
                 android:focusable="true"
                 app:backgroundTint="#CEECF5"
@@ -95,7 +96,8 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/pressureButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"

@@ -10,7 +10,7 @@ import com.mostafasadati.weathernow.model.Pollution
 
 @Database(
     entities = [Pollution::class],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(ConvertPollutionList::class)
@@ -32,6 +32,8 @@ abstract class PollutionDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 PollutionDatabase::class.java, "PollutionDB.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

@@ -9,7 +9,7 @@ import com.mostafasadati.weathernow.model.*
 
 @Database(
     entities = [ForecastWeather::class],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(ConvertForecastList::class, ConvertWeatherList::class)
@@ -31,6 +31,8 @@ abstract class ForecastDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 ForecastDatabase::class.java, "ForecastDB.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

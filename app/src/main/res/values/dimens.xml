@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="top_layout_size">125dp</dimen>
+    <dimen name="temp_humidity_layout_size">130dp</dimen>
+    <dimen name="wind_layout_layout_size">120dp</dimen>
+    <dimen name="sunrise_sunset_layout_size">120dp</dimen>
+    <dimen name="forecast_item_layout_width">120dp</dimen>
+    <dimen name="forecast_item_layout_height">150dp</dimen>
+    <dimen name="gps_item_size">60dp</dimen>
+    <dimen name="map_bottom_layout_size">60dp</dimen>
+
+    <dimen name="title_txt">16sp</dimen>
+    <dimen name="big_txt">30sp</dimen>
+    <dimen name="description_txt">18sp</dimen>
+    <dimen name="temp_tiny_txt">14sp</dimen>
+    <dimen name="pollution_txt">22sp</dimen>
+    <dimen name="sunrise_sunset_txt">15sp</dimen>
+    <dimen name="forecast_item_txt">13sp</dimen>
+    <dimen name="search_item_city_txt_size">18sp</dimen>
+    <dimen name="search_item_country_txt_size">14sp</dimen>
+
+
+    <dimen name="forecast_item_anim_size">60dp</dimen>
+    <dimen name="map_items_size">56dp</dimen>
+
+
+    <dimen name="normal_padding">4dp</dimen>
+    <dimen name="gps_margin">20dp</dimen>
+    <dimen name="search_item_flag_margin">15dp</dimen>
+    <dimen name="search_item_margin">14dp</dimen>
+    <dimen name="map_items_margin">10dp</dimen>
+
+    <dimen name="search_item_flag">35dp</dimen>
+</resources>

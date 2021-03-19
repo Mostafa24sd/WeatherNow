@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">هواگو</string>
+    <string name="can_t_load">مشکل در دریافت</string>
+    <string name="humidity">رطوبت</string>
+    <string name="wind">باد</string>
+
+
+    <string name="n">شمال</string>
+    <string name="nne">شمال-شمال شرقی</string>
+    <string name="ne">شمال شرقی</string>
+    <string name="ene">شرق-شمال شرقی</string>
+    <string name="e">شرق</string>
+    <string name="ese">شرق-جنوب شرقی</string>
+    <string name="se">جنوب شرقی</string>
+    <string name="sse">جنوب-جنوب شرقی</string>
+    <string name="s">جنوب</string>
+    <string name="ssw">جنوب-جنوب غربی</string>
+    <string name="sw">جنوب غربی</string>
+    <string name="wsw">غرب-جنوب غربی</string>
+    <string name="w">غرب</string>
+    <string name="wnw">غرب-شمال غربی</string>
+    <string name="nw">شمال غربی</string>
+    <string name="nnw">شمال-شمال غربی</string>
+    <string name="pressure">فشار هوا</string>
+    <string name="sunrise">طلوع</string>
+    <string name="sunset">غروب</string>
+
+
+    <string name="sunday">یکشنبه</string>
+    <string name="monday">دوشنبه</string>
+    <string name="tue">سه شنبه</string>
+    <string name="wed">چهارشنبه</string>
+    <string name="thu">پنج شنبه</string>
+    <string name="fri">جمعه</string>
+    <string name="sat">شنبه</string>
+    <string name="forecast">پیش بینی:</string>
+    <string name="map">نقشه</string>
+    <string name="setting">تنظیمات</string>
+    <string name="rate">نظر دادن</string>
+    <string name="other">دیگر</string>
+    <string name="report_a_problem">گزارش مشکل</string>
+    <string name="contact_us">ارتباط با ما</string>
+    <string name="open">باز کردن</string>
+    <string name="close">بستن</string>
+    <string name="title_activity_maps">نقشه</string>
+    <string name="search_city">جستجوی شهر</string>
+    <string name="not_found">پیدا تشد :(</string>
+    <string name="search_by_gps">جستجو با GPS</string>
+    <string name="feels_like">دمای حسی:\u0020</string>
+    <string name="select_color_of_widget">رنگ ویجت:</string>
+    <string name="dark">تاریک</string>
+    <string name="light">روشن</string>
+
+    <string name="messages_header">تنظیمات عمومی</string>
+    <string name="unit_title">واحد اندازه گیری</string>
+
+    <string name="current_widget_color">هوای کنونی</string>
+
+    <string name="ok">تایید</string>
+    <string name="air_quality">کیفیت هوا:\u0020</string>
+    <string name="refresh">به روزرسانی</string>
+    <string name="co">CO</string>
+    <string name="no">NO</string>
+    <string name="no2">NO2</string>
+    <string name="o3">O3</string>
+    <string name="so2">SO2</string>
+    <string name="pm2_5">PM2.5</string>
+    <string name="pm10">PM10</string>
+    <string name="nh3">NH3</string>
+    <string name="search">جستجو</string>
+    <string name="temp">دما</string>
+    <string name="error_occurred">مشکلی رخ داد</string>
+    <string name="meter_p_second">\u0020متر/ثانیه</string>
+    <string name="miles_p_hour">\u0020مایل/ساعت</string>
+    <string name="network_error">مشکل شبکه</string>
+    <string name="navigation_drawer_open">باز کردن</string>
+    <string name="navigation_drawer_close">بستن</string>
+    <string name="sound_effects">افکت های صوتی</string>
+    <string name="last_update">آخرین آپدیت:\u0020</string>
+    <string name="just_now">هم اکنون</string>
+
+    <string name="day">روز</string>
+    <string name="days">روز</string>
+    <string name="hour">ساعت</string>
+    <string name="hours">ساعت</string>
+    <string name="min">دقیقه</string>
+    <string name="mins">دقیقه</string>
+    <string name="sec">ثانیه</string>
+    <string name="secs">ثانیه</string>
+    <string name="ago">قبل</string>
+    <string name="good">عالی</string>
+    <string name="fair">خوب</string>
+    <string name="moderate">متوسط</string>
+    <string name="poor">آلوده</string>
+    <string name="very_poor">خطرناک</string>
+    <string name="unknown">نامشخص</string>
+    <string name="widgets_color">رنگ ویجت ها</string>
+    <string name="forecast_weather">ویجت پیش بینی</string>
+
+
+</resources>

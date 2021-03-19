@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,13 +14,13 @@
     <LinearLayout
         android:id="@+id/temp_humidity_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/temp_humidity_layout_size">
 
         <include
             layout="@layout/temp_layout"
             android:layout_width="0dp"
             bind:currentWeather="@{currentWeather}"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/temp_humidity_layout_size"
             android:layout_weight="0.5">
 
         </include>
@@ -31,12 +32,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/temp_humidity_layout_size"
             android:layout_weight="0.5">
 
             <ImageView
                 setHumidityBg="@{currentWeather.main.humidity}"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -52,6 +52,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
+                    tools:src="@drawable/w10"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp" />
 
@@ -67,24 +68,23 @@
                         android:layout_height="wrap_content"
                         android:text="@string/humidity"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/title_txt" />
 
                     <TextView
                         android:id="@+id/humidTxt"
                         setHumidityTxt="@{currentWeather.main.humidity}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/exo_e_l"
+                        android:layout_marginTop="@dimen/normal_padding"
                         android:maxLines="1"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_26ssp" />
+                        android:textSize="@dimen/big_txt" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </LinearLayout>
 </layout>

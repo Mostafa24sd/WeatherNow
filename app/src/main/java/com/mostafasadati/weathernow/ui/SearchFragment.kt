@@ -58,6 +58,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         gps.setOnClickListener {
+            hideKeyboard()
             checkPermission()
         }
 
@@ -195,5 +196,19 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
+    override fun onDestroy() {
+        hideKeyboard()
+        super.onDestroy()
+    }
 
+    private fun hideKeyboard() {
+        val imm: InputMethodManager =
+            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        var view = requireActivity().currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 }

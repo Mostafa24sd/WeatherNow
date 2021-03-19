@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="@dimen/top_layout_size"
         android:orientation="horizontal">
 
         <ImageView
@@ -25,7 +25,6 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView"
                 setIcon='@{currentWeather.weather.get(0).icon?? "01d"}'
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -36,7 +35,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.7"
                 android:orientation="vertical">
 
@@ -45,7 +44,7 @@
                     setTextColor='@{currentWeather.weather.get(0).icon?? "01d"}'
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginTop="2dp"
                     android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Last update: 2 days ago" />
@@ -55,13 +54,14 @@
                     setTempDescription='@{currentWeather.weather.get(0).description?? "Unknown"}'
                     setTextColor='@{currentWeather.weather.get(0).icon?? "01d"}'
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:maxLines="1"
+                    android:layout_marginTop="@dimen/normal_padding"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_25ssp"
+                    android:textSize="@dimen/big_txt"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/last_update_txt"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.38"
                     tools:text="Cloudy" />
 
@@ -70,10 +70,9 @@
                     setTextColor='@{currentWeather.weather.get(0).icon?? "01d"}'
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/exo_e_l"
                     android:text="@{currentWeather.name}"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_15ssp"
+                    android:textSize="@dimen/description_txt"
                     app:layout_constraintTop_toBottomOf="@id/descTxt"
                     tools:text="Tehran" />
 

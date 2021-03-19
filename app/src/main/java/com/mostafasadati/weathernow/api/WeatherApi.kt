@@ -8,6 +8,7 @@ import com.mostafasadati.weathernow.model.Pollution
 import com.mostafasadati.weathernow.model.SearchCity
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.util.*
 
 interface WeatherApi {
 
@@ -22,17 +23,18 @@ interface WeatherApi {
             if ((1..2).random() == 1) BuildConfig.OPENWEATHERMAP_API_KEY1 else BuildConfig.OPENWEATHERMAP_API_KEY2
     }
 
-   /* @GET(CURRENT)
-    suspend fun getCurrentByName(
-        @Query("q") city: String = Setting.city + "," + Setting.country,
-        @Query("units") unit: String = Setting.unit.name,
-        @Query("appid") apiKey: String = API_KEY
-    ): CurrentWeather*/
+    /* @GET(CURRENT)
+     suspend fun getCurrentByName(
+         @Query("q") city: String = Setting.city + "," + Setting.country,
+         @Query("units") unit: String = Setting.unit.name,
+         @Query("appid") apiKey: String = API_KEY
+     ): CurrentWeather*/
 
     @GET(CURRENT)
     suspend fun getCurrentByGPS(
         @Query("lat") lat: Float = Setting.lat,
         @Query("lon") lon: Float = Setting.lon,
+        @Query("lang") lang: String = Setting.locale.language,
         @Query("units") unit: String = Setting.unit.name,
         @Query("appid") apiKey: String = API_KEY
     ): CurrentWeather
@@ -48,6 +50,7 @@ interface WeatherApi {
     suspend fun getForecastByGPS(
         @Query("lat") lat: Float = Setting.lat,
         @Query("lon") lon: Float = Setting.lon,
+        @Query("lang") lang: String = Setting.locale.language,
         @Query("units") unit: String = Setting.unit.name,
         @Query("appid") apiKey: String = API_KEY
     ): ForecastWeather

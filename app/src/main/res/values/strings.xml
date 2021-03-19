@@ -46,7 +46,7 @@
     <string name="search_city">Search city</string>
     <string name="not_found">Not found:(</string>
     <string name="search_by_gps">Search by GPS</string>
-    <string name="fells_like">Fells like: </string>
+    <string name="feels_like">Fells like:\u0020</string>
     <string name="select_color_of_widget">Select color of Widget:</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
@@ -61,23 +61,13 @@
     </string-array>
     <!-- Preference Titles -->
     <string name="messages_header">General Setting</string>
-    <string name="sync_header">Sync</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
     <string name="unit_title">Select Unit</string>
 
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="widget_color">Widget color</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="current_widget_color">Current weather</string>
+
     <string name="ok">OK</string>
-    <string name="air_quality">Air Quality:</string>
+    <string name="air_quality">Air Quality:\u0020</string>
     <string name="refresh">Refresh</string>
     <string name="co">CO</string>
     <string name="no">NO</string>
@@ -90,8 +80,30 @@
     <string name="search">Search</string>
     <string name="temp">Temp</string>
     <string name="error_occurred">Error occurred</string>
-    <string name="meter_p_second">\" meter/s\"</string>
-    <string name="miles_p_hour">\" miles/h\"</string>
+    <string name="meter_p_second">\u0020meter/s</string>
+    <string name="miles_p_hour">\u0020miles/h</string>
     <string name="network_error">Network error</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="sound_effects">Sound effects</string>
+    <string name="last_update">Last update:\u0020</string>
+    <string name="just_now">Just now</string>
+    <string name="day">Day</string>
+    <string name="days">Days</string>
+    <string name="hour">Hour</string>
+    <string name="hours">Hours</string>
+    <string name="min">minute</string>
+    <string name="mins">Minutes</string>
+    <string name="sec">Second</string>
+    <string name="secs">Seconds</string>
+    <string name="ago">ago</string>
+    <string name="good">Good</string>
+    <string name="fair">Fair</string>
+    <string name="moderate">Moderate</string>
+    <string name="poor">Poor</string>
+    <string name="very_poor">Very poor</string>
+    <string name="unknown">Unknown</string>
+    <string name="widgets_color">Widgets color</string>
+    <string name="forecast_weather">Forecast weather</string>
 
 </resources>
