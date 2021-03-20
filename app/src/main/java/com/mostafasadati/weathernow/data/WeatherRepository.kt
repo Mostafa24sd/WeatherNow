@@ -20,20 +20,18 @@ class WeatherRepository @Inject constructor(
 ) {
 
     fun getCurrent() = liveData(Dispatchers.IO) {
-        val a = currentDatabase.currentDao().get()
+        val db = currentDatabase.currentDao().get()
 
-        if (a == null)
+        if (db == null)
             emit(
-                Resource.loading(
-                    data = currentDatabase.currentDao().get(),
-                    message = "db_null"
+                Resource.loadingDbNull(
+                    data = currentDatabase.currentDao().get()
                 )
             )
         else
             emit(
-                Resource.loading(
-                    data = currentDatabase.currentDao().get(),
-                    message = "db_full"
+                Resource.loadingDbFull(
+                    data = currentDatabase.currentDao().get()
                 )
             )
 
@@ -43,33 +41,30 @@ class WeatherRepository @Inject constructor(
                     .insert(api.getCurrentByGPS())
                 emit(
                     Resource.success(
-                        currentDatabase.currentDao().get(),
-                        message = null
+                        currentDatabase.currentDao().get()
                     )
                 )
 
             } catch (exception: Exception) {
-                emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+                emit(Resource.error(data = null))
             }
             Setting.SHOULD_UPDATE = false
         }
     }
 
     fun getForecast() = liveData(Dispatchers.IO) {
-        val a = forecastDatabase.forecastDao().get()
+        val db = forecastDatabase.forecastDao().get()
 
-        if (a == null)
+        if (db == null)
             emit(
-                Resource.loading(
-                    data = forecastDatabase.forecastDao().get(),
-                    message = "f_db_null"
+                Resource.loadingDbNull(
+                    data = forecastDatabase.forecastDao().get()
                 )
             )
         else
             emit(
-                Resource.loading(
-                    forecastDatabase.forecastDao().get(),
-                    message = "f_db_full"
+                Resource.loadingDbFull(
+                    forecastDatabase.forecastDao().get()
                 )
             )
 
@@ -79,31 +74,28 @@ class WeatherRepository @Inject constructor(
                     .insert(api.getForecastByGPS())
                 emit(
                     Resource.success(
-                        forecastDatabase.forecastDao().get(),
-                        message = null
+                        forecastDatabase.forecastDao().get()
                     )
                 )
             } catch (exception: Exception) {
-                emit(Resource.error(data = null, message = exception.message ?: "f_Error occurred"))
+                emit(Resource.error(data = null))
             }
         }
     }
 
     fun getPollution() = liveData(Dispatchers.IO) {
-        val a = pollutionDatabase.pollutionDao().get()
+        val db = pollutionDatabase.pollutionDao().get()
 
-        if (a == null)
+        if (db == null)
             emit(
-                Resource.loading(
-                    data = pollutionDatabase.pollutionDao().get(),
-                    message = "P db_null"
+                Resource.loadingDbNull(
+                    data = pollutionDatabase.pollutionDao().get()
                 )
             )
         else
             emit(
-                Resource.loading(
-                    data = pollutionDatabase.pollutionDao().get(),
-                    message = "P db_full"
+                Resource.loadingDbFull(
+                    data = pollutionDatabase.pollutionDao().get()
                 )
             )
 
@@ -112,27 +104,24 @@ class WeatherRepository @Inject constructor(
                 .insert(api.getPollution())
             emit(
                 Resource.success(
-                    data = pollutionDatabase.pollutionDao().get(),
-                    message = null
+                    data = pollutionDatabase.pollutionDao().get()
                 )
             )
         } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+            emit(Resource.error(data = null))
         }
     }
-
 
     fun searchByName(city: String) = liveData(Dispatchers.IO) {
         emit(
             Resource.loading(
-                data = null,
-                message = "loading"
+                data = null
             )
         )
         try {
-            emit(Resource.success(api.searchByName(city = city), message = null))
+            emit(Resource.success(api.searchByName(city = city)))
         } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+            emit(Resource.error(data = null))
         }
 
     }
@@ -140,19 +129,17 @@ class WeatherRepository @Inject constructor(
     fun searchByGPS(latitude: Double, longitudes: Double) = liveData(Dispatchers.IO) {
         emit(
             Resource.loading(
-                data = null,
-                message = "loading"
+                data = null
             )
         )
         try {
             emit(
                 Resource.success(
-                    api.searchByGPS(lat = latitude, lon = longitudes),
-                    message = null
+                    api.searchByGPS(lat = latitude, lon = longitudes)
                 )
             )
         } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
+            emit(Resource.error(data = null))
         }
 
     }

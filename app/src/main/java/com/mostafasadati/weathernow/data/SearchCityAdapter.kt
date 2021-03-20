@@ -35,12 +35,10 @@ class SearchCityAdapter(
     override fun onBindViewHolder(holder: SearchCityViewHolder, position: Int) {
         val currentItem = result[position]
 
-        if (currentItem != null)
-            holder.bind(currentItem)
+        holder.bind(currentItem)
 
         holder.itemView.setOnClickListener {
-            if (currentItem != null)
-                onCityClick.invoke(currentItem)
+            onCityClick.invoke(currentItem)
         }
     }
 }

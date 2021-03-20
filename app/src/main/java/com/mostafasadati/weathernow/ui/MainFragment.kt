@@ -5,14 +5,10 @@ import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,6 +40,15 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<WeatherViewModel>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        requireContext().theme.applyStyle(R.style.Theme_WeatherNow, true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -87,10 +92,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 binding.status = it.status
 
                 when (it.status) {
-                    Status.LOADING -> {
-                        if (it.message == "db_full") {
-                            setCurrentData(it.data!!)
-                        }
+                    Status.LOADING_DB_FULL -> {
+                        setCurrentData(it.data!!)
                     }
                     Status.ERROR -> {
                         Toast.makeText(
@@ -110,10 +113,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.getForecast()
             .observe(viewLifecycleOwner) {
                 when (it.status) {
-                    Status.LOADING -> {
-                        if (it.message == "f_db_full") {
-                            setForecastData(it.data!!)
-                        }
+                    Status.LOADING_DB_FULL -> {
+                        setForecastData(it.data!!)
                     }
                     Status.ERROR -> {
                         Toast.makeText(
@@ -131,10 +132,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.getPollution()
             .observe(viewLifecycleOwner) {
                 when (it.status) {
-                    Status.LOADING -> {
-                        if (it.message == "P db_full") {
+                    Status.LOADING_DB_FULL -> {
                             binding.pollution = it.data
-                        }
                     }
                     Status.ERROR -> {
                         Toast.makeText(
@@ -166,6 +165,10 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         last_update_txt.text = getDate(Setting.lastUpdate)
 
+        refreshWidgets()
+    }
+
+    private fun refreshWidgets() {
         val updateWidgetIntent = Intent(context, WidgetCurrentProvider::class.java)
         requireContext().sendBroadcast(updateWidgetIntent)
 
@@ -173,8 +176,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         requireContext().sendBroadcast(updateFWidgetIntent)
 
         val updatePWidgetIntent = Intent(context, WidgetPollutionProvider::class.java)
-        requireContext().sendBroadcast(updatePWidgetIntent)
-    }
+        requireContext().sendBroadcast(updatePWidgetIntent)    }
 
     private fun setForecastData(it: ForecastWeather) {
         val adapter = ForecastAdapter(it)
@@ -189,7 +191,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         val asset: AssetManager = requireContext().assets
         val afd: AssetFileDescriptor = asset.openFd(name)
-
 
         mediaPlayer.reset()
         mediaPlayer.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
@@ -219,7 +220,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-
         inflater.inflate(R.menu.main_menu, menu)
     }
 
@@ -254,8 +254,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val diffDays = diff / (24 * 60 * 60 * 1000)
 
         var out = getString(R.string.last_update)
-
-
 
         if (diffDays > 0) {
             if (diffDays == 1L)

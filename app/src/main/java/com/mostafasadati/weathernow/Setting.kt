@@ -1,5 +1,6 @@
 package com.mostafasadati.weathernow
 
+import com.mostafasadati.weathernow.widgets.WidgetColor
 import java.util.*
 
 class Setting {

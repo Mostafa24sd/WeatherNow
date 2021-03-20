@@ -17,23 +17,4 @@ import com.mostafasadati.weathernow.model.Pollution
 abstract class PollutionDatabase : RoomDatabase() {
 
     abstract fun pollutionDao(): PollutionDao
-
-    companion object {
-        @Volatile
-        private var INSTANCE: PollutionDatabase? = null
-
-        fun getInstance(context: Context): PollutionDatabase =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE
-                    ?: buildDatabase(context).also { INSTANCE = it }
-            }
-
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                PollutionDatabase::class.java, "PollutionDB.db"
-            )
-                .fallbackToDestructiveMigration()
-                .build()
-    }
 }

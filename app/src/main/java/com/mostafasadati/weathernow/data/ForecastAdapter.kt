@@ -29,9 +29,7 @@ class ForecastAdapter(private val forecastWeather: ForecastWeather) :
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
         val currentItem = forecastWeather.mList[position]
 
-        if (currentItem != null) {
-            holder.bind(currentItem)
-        }
+        holder.bind(currentItem)
     }
 
     override fun getItemCount(): Int {

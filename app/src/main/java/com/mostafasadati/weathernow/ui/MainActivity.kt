@@ -17,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,8 +40,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         navigation_view.setupWithNavController(navController)
         navigation_view.setNavigationItemSelectedListener(this)
-
-
     }
 
 
@@ -54,7 +51,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.mapFragment -> {
                 navController.navigate(R.id.mapFragment)
@@ -63,7 +59,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 navController.navigate(R.id.settingsFragment)
             }
         }
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }

@@ -3,25 +3,15 @@ package com.mostafasadati.weathernow.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.content.IntentSender
 import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
-import android.os.Looper
 import android.os.Looper.getMainLooper
-import android.provider.Settings
-import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
@@ -47,6 +37,15 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     private lateinit var builder: LocationSettingsRequest.Builder
     private lateinit var locationCallback: LocationCallback
     private lateinit var bindings: SearchFragmentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        requireContext().theme.applyStyle(R.style.Theme_WeatherNow, true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

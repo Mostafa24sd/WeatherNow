@@ -1,10 +1,12 @@
 package com.mostafasadati.weathernow.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.mostafasadati.weathernow.data.WeatherRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SearchViewModel @ViewModelInject constructor(
+@HiltViewModel
+class SearchViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 

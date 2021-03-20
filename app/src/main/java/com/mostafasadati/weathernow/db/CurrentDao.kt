@@ -12,9 +12,6 @@ interface CurrentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(currentWeather: CurrentWeather)
 
-    /*@Query("SELECT * FROM current_weather WHERE name = :city AND sys_country= :country")
-    fun get(city: String = Setting.city, country: String = Setting.country): CurrentWeather*/
-
     @Query("SELECT * FROM current_weather WHERE i = 0")
     fun get(): CurrentWeather
 }

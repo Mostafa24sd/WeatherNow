@@ -5,5 +5,7 @@ enum class Status {
     SUCCESS,
     ERROR,
     LOADING,
+    LOADING_DB_NULL,
+    LOADING_DB_FULL,
     NOT_FOUND
 }

@@ -463,7 +463,7 @@ private fun unixToTime(unixSeconds: Long): String {
     return formattedDate.substring(10, 16)
 }
 
-public fun getDayOfWeek(context: Context, str: String?): String? {
+fun getDayOfWeek(context: Context, str: String?): String? {
     var date1: Date? = Date()
     try {
         date1 = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(str)

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.preference.PreferenceFragmentCompat
 import com.mostafasadati.weathernow.*
 import com.mostafasadati.weathernow.Unit
+import com.mostafasadati.weathernow.widgets.WidgetColor
 
 
 class SettingsFragment : PreferenceFragmentCompat(),
@@ -45,13 +46,18 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
         if (sharedPreferences.contains(key)) {
             Setting.unit =
-                SettingData.stringToUnit(sharedPreferences.getString("unit", Unit.Metric.name)!!)
-            Setting.audio = sharedPreferences.getBoolean("audio", true)
+                SettingData.stringToUnit(
+                    sharedPreferences.getString(
+                        SettingData.UNIT,
+                        Unit.Metric.name
+                    )!!
+                )
+            Setting.audio = sharedPreferences.getBoolean(SettingData.AUDIO, true)
 
             Setting.currentWidgetColor =
                 SettingData.stringToWidgetColor(
                     sharedPreferences.getString(
-                        "current_widget_color",
+                        SettingData.CURRENT_WIDGET_COLOR,
                         WidgetColor.Light.name
                     )!!
                 )
@@ -59,7 +65,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
             Setting.forecastWidgetColor =
                 SettingData.stringToWidgetColor(
                     sharedPreferences.getString(
-                        "forecast_widget_color",
+                        SettingData.FORECAST_WIDGET_COLOR,
                         WidgetColor.Light.name
                     )!!
                 )
