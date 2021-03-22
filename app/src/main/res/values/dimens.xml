@@ -6,7 +6,7 @@
     <dimen name="sunrise_sunset_layout_size">120dp</dimen>
     <dimen name="forecast_item_layout_width">120dp</dimen>
     <dimen name="forecast_item_layout_height">150dp</dimen>
-    <dimen name="gps_item_size">60dp</dimen>
+    <dimen name="gps_item_size">70dp</dimen>
 
     <dimen name="title_txt">16sp</dimen>
     <dimen name="big_txt">30sp</dimen>

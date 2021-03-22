@@ -1,5 +1,6 @@
 package com.mostafasadati.weathernow.data
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.mostafasadati.weathernow.Resource
 import com.mostafasadati.weathernow.Setting
@@ -47,6 +48,7 @@ class WeatherRepository @Inject constructor(
 
             } catch (exception: Exception) {
                 emit(Resource.error(data = null))
+                exception.printStackTrace()
             }
             Setting.SHOULD_UPDATE = false
         }

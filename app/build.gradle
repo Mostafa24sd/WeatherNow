@@ -14,11 +14,11 @@ android {
 
     defaultConfig {
         applicationId "com.mostafasadati.weathernow"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -63,11 +63,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    /*implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'*/
 
     implementation 'com.airbnb.android:lottie:3.6.1'
-    implementation('com.squareup.okhttp3:okhttp:5.0.0-alpha.2')
 
     // LifeCycle
     implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
@@ -90,7 +89,12 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+    implementation("com.squareup.retrofit2:retrofit:2.7.1")
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+
+    implementation("com.squareup.okhttp3:okhttp:3.12.8") {
+        force = true
+    }
 
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
@@ -100,5 +104,8 @@ dependencies {
     implementation 'com.nabinbhandari.android:permissions:3.8'
 
     implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+
+    implementation "androidx.multidex:multidex:2.0.1"
+
 }
 

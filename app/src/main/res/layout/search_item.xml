@@ -18,13 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/gps_item_size"
             android:layout_margin="2dp"
+            app:cardBackgroundColor="#EBF1EA"
             app:cardCornerRadius="20dp"
             app:cardElevation="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#EBF1EA">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/search_city_txt"
@@ -50,23 +50,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/search_city_txt"
                     tools:text="Iran" />
 
-                <androidx.cardview.widget.CardView
+                <ImageView
+                    setFlagImg="@{city.country}"
                     android:layout_width="@dimen/search_item_flag"
                     android:layout_height="@dimen/search_item_flag"
-                    android:layout_marginEnd="@dimen/search_item_flag_margin"
-                    app:cardCornerRadius="@dimen/search_item_flag"
+                    android:layout_marginEnd="@dimen/search_item_margin"
+                    android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/ir" />
 
-                    <ImageView
-                        setFlagImg="@{city.country}"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        tools:src="@drawable/ir" />
-
-                </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

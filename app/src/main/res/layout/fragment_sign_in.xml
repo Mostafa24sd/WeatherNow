@@ -16,7 +16,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <TextView
-            android:id="@+id/tvLatitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -24,7 +23,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
-            android:id="@+id/tvLongitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -32,7 +30,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
-            android:id="@+id/tvProvider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -40,7 +37,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <Button
-            android:id="@+id/btOpenMap"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -51,7 +47,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btGetLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
