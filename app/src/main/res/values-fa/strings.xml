@@ -40,23 +40,15 @@
     <string name="other">دیگر</string>
     <string name="report_a_problem">گزارش مشکل</string>
     <string name="contact_us">ارتباط با ما</string>
-    <string name="open">باز کردن</string>
-    <string name="close">بستن</string>
-    <string name="title_activity_maps">نقشه</string>
-    <string name="search_city">جستجوی شهر</string>
     <string name="not_found">پیدا تشد :(</string>
     <string name="search_by_gps">جستجو با GPS</string>
     <string name="feels_like">دمای حسی:\u0020</string>
-    <string name="select_color_of_widget">رنگ ویجت:</string>
-    <string name="dark">تاریک</string>
-    <string name="light">روشن</string>
 
     <string name="messages_header">تنظیمات عمومی</string>
     <string name="unit_title">واحد اندازه گیری</string>
 
     <string name="current_widget_color">هوای کنونی</string>
 
-    <string name="ok">تایید</string>
     <string name="air_quality">کیفیت هوا:\u0020</string>
     <string name="refresh">به روزرسانی</string>
     <string name="co">CO</string>
@@ -73,8 +65,6 @@
     <string name="meter_p_second">\u0020متر/ثانیه</string>
     <string name="miles_p_hour">\u0020مایل/ساعت</string>
     <string name="network_error">مشکل شبکه</string>
-    <string name="navigation_drawer_open">باز کردن</string>
-    <string name="navigation_drawer_close">بستن</string>
     <string name="sound_effects">افکت های صوتی</string>
     <string name="last_update">آخرین آپدیت:\u0020</string>
     <string name="just_now">هم اکنون</string>

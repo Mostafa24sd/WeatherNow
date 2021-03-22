@@ -183,33 +183,35 @@ class WidgetForecastProvider : AppWidgetProvider() {
         if (Setting.forecastWidgetColor == WidgetColor.Dark) {
 
             icon = when (type) {
-                "01d" -> R.drawable.w_sunny_d
-                "01n" -> R.drawable.w_moon_d
-                "02d" -> R.drawable.w_partly_cloudy_d
-                "02n", "04n" -> R.drawable.w_partly_cloudy_night_d
-                "04d" -> R.drawable.w_partly_cloudy_d
-                "03d", "03n" -> R.drawable.w_cloudy_d
-                "09d", "09n" -> R.drawable.w_heavy_rain_d
-                "10d", "10n" -> R.drawable.w_moderate_rain_d
-                "11d", "11n" -> R.drawable.w_thunderstorm_d
-                "13d", "13n" -> R.drawable.w_light_snowing_d
-                "50d", "50n" -> R.drawable.w_mist_d
-                else -> R.drawable.w_sunny_d
+                "01d" -> R.drawable.w_d_sunny
+                "01n" -> R.drawable.w_d_moon
+                "02d" -> R.drawable.w_d_sun_partly_cloudy
+                "02n" -> R.drawable.w_d_moon_partly_cloudy
+                "03d", "03n", "04d", "04n" -> R.drawable.w_d_cloudy
+                "09d" -> R.drawable.w_d_sun_showers
+                "09n" -> R.drawable.w_d_moon_shower
+                "10d", "10n" -> R.drawable.w_d_rain
+                "11d", "11n" -> R.drawable.w_d_thunderstorm
+                "13d", "13n" -> R.drawable.w_d_snow
+                "50d" -> R.drawable.w_d_sun_fog
+                "50n" -> R.drawable.w_d_moon_fog
+                else -> R.drawable.w_d_sunny
             }
         } else {
             icon = when (type) {
-                "01d" -> R.drawable.w_sunny_l
-                "01n" -> R.drawable.w_moon_l
-                "02d" -> R.drawable.w_partly_cloudy_l
-                "02n", "04n" -> R.drawable.w_partly_cloudy_night_l
-                "04d" -> R.drawable.w_partly_cloudy_l
-                "03d", "03n" -> R.drawable.w_cloudy_l
-                "09d", "09n" -> R.drawable.w_heavy_rain_l
-                "10d", "10n" -> R.drawable.w_moderate_rain_l
-                "11d", "11n" -> R.drawable.w_thunderstorm_l
-                "13d", "13n" -> R.drawable.w_light_snowing_l
-                "50d", "50n" -> R.drawable.w_mist_l
-                else -> R.drawable.w_sunny_l
+                "01d" -> R.drawable.w_l_sunny
+                "01n" -> R.drawable.w_l_moon
+                "02d" -> R.drawable.w_l_sun_partly_cloudy
+                "02n" -> R.drawable.w_l_moon_partly_cloudy
+                "03d", "03n", "04d", "04n" -> R.drawable.w_l_cloudy
+                "09d" -> R.drawable.w_l_sun_showers
+                "09n" -> R.drawable.w_l_moon_shower
+                "10d", "10n" -> R.drawable.w_l_rain
+                "11d", "11n" -> R.drawable.w_l_thunderstorm
+                "13d", "13n" -> R.drawable.w_l_snow
+                "50d" -> R.drawable.w_l_sun_fog
+                "50n" -> R.drawable.w_l_moon_fog
+                else -> R.drawable.w_l_sunny
             }
         }
         return icon

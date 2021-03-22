@@ -29,7 +29,7 @@ fun setIcon(imageView: ImageView, type: String) {
     if (type != "")
         when (type) {
             "01d" -> {
-                imageView.setImageResource(R.drawable.sunny)
+                imageView.setImageResource(R.drawable.d_sunny)
                 val rotate = RotateAnimation(
                     0f,
                     360f,
@@ -44,7 +44,7 @@ fun setIcon(imageView: ImageView, type: String) {
                 imageView.startAnimation(rotate)
             }
             "01n" -> {
-                imageView.setImageResource(R.drawable.moon)
+                imageView.setImageResource(R.drawable.n_moon)
                 imageView.startAnimation(
                     AnimationUtils.loadAnimation(
                         imageView.context,
@@ -53,24 +53,19 @@ fun setIcon(imageView: ImageView, type: String) {
                 )
             }
             "02d" -> {
-                imageView.setImageResource(R.drawable.partly_cloudy1_anim)
-                (imageView.drawable as AnimationDrawable).start()
+                imageView.setImageResource(R.drawable.d_sun_partly_cloudy)
             }
-            "02n", "04n" -> imageView.setImageResource(R.drawable.partly_cloudy_night)
-            "04d" -> imageView.setImageResource(R.drawable.partly_cloudy2)
-            "03d", "03n" -> imageView.setImageResource(R.drawable.cloudy1)
-            "09d" -> {
-                imageView.setImageResource(R.drawable.heavy_rain_anim)
-                (imageView.drawable as AnimationDrawable).start()
-            }
-            "09n" -> imageView.setImageResource(R.drawable.heavy_rain)
-            "10d", "10n" -> imageView.setImageResource(R.drawable.moderate_rain)
-            "11d" -> imageView.setImageResource(R.drawable.thunderstorm)
-            "11n" -> imageView.setImageResource(R.drawable.thunderstorm_night)
-            "13d" -> imageView.setImageResource(R.drawable.light_snowing)
-            "13n" -> imageView.setImageResource(R.drawable.light_snowing_night)
-            "50d" -> imageView.setImageResource(R.drawable.mist)
-            "50n" -> imageView.setImageResource(R.drawable.mist_night)
+            "02n" -> imageView.setImageResource(R.drawable.n_moon_partly_cloudy)
+            "03d", "04d" -> imageView.setImageResource(R.drawable.d_cloudy)
+            "03n", "04n" -> imageView.setImageResource(R.drawable.n_cloudy)
+            "09d" -> imageView.setImageResource(R.drawable.d_sun_showers)
+            "09n" -> imageView.setImageResource(R.drawable.n_moon_shower)
+            "10d", "10n" -> imageView.setImageResource(R.drawable.d_rain)
+            "11d" -> imageView.setImageResource(R.drawable.d_thunderstorm)
+            "11n" -> imageView.setImageResource(R.drawable.n_thunderstorm)
+            "13d","13n" -> imageView.setImageResource(R.drawable.d_snow)
+            "50d" -> imageView.setImageResource(R.drawable.d_sun_fog)
+            "50n" -> imageView.setImageResource(R.drawable.n_moon_fog)
         }
 }
 
@@ -396,7 +391,7 @@ fun setTextColor(textView: TextView, icon: String) {
 
 @BindingAdapter("setDayText")
 fun setDayText(textView: TextView, date: String) {
-    textView.text = getDayOfWeek(textView.context,date)
+    textView.text = getDayOfWeek(textView.context, date)
 }
 
 @BindingAdapter("setTimeText")

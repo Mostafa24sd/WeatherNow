@@ -40,25 +40,11 @@
     <string name="other">other</string>
     <string name="report_a_problem">Report a problem</string>
     <string name="contact_us">Contact us</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="search_city">Search city</string>
     <string name="not_found">Not found:(</string>
     <string name="search_by_gps">Search by GPS</string>
     <string name="feels_like">Fells like:\u0020</string>
-    <string name="select_color_of_widget">Select color of Widget:</string>
-    <string name="dark">Dark</string>
-    <string name="light">Light</string>
 
 
-    <string-array name="query_suggestions">
-        <item>Android</item>
-        <item>iOS</item>
-        <item>SCALA</item>
-        <item>Ruby</item>
-        <item>JavaScript</item>
-    </string-array>
     <!-- Preference Titles -->
     <string name="messages_header">General Setting</string>
 
@@ -66,7 +52,6 @@
 
     <string name="current_widget_color">Current weather</string>
 
-    <string name="ok">OK</string>
     <string name="air_quality">Air Quality:\u0020</string>
     <string name="refresh">Refresh</string>
     <string name="co">CO</string>
@@ -83,8 +68,6 @@
     <string name="meter_p_second">\u0020meter/s</string>
     <string name="miles_p_hour">\u0020miles/h</string>
     <string name="network_error">Network error</string>
-    <string name="navigation_drawer_open">open</string>
-    <string name="navigation_drawer_close">close</string>
     <string name="sound_effects">Sound effects</string>
     <string name="last_update">Last update:\u0020</string>
     <string name="just_now">Just now</string>

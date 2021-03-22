@@ -7,7 +7,6 @@
     <dimen name="forecast_item_layout_width">120dp</dimen>
     <dimen name="forecast_item_layout_height">150dp</dimen>
     <dimen name="gps_item_size">60dp</dimen>
-    <dimen name="map_bottom_layout_size">60dp</dimen>
 
     <dimen name="title_txt">16sp</dimen>
     <dimen name="big_txt">30sp</dimen>
@@ -21,7 +20,6 @@
 
 
     <dimen name="forecast_item_anim_size">60dp</dimen>
-    <dimen name="map_items_size">56dp</dimen>
 
 
     <dimen name="normal_padding">4dp</dimen>

@@ -29,9 +29,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="-5dp"
                 android:layout_weight="0.3"
-                tools:src="@drawable/partly_cloudy1" />
+                tools:src="@drawable/d_sun_partly_cloudy" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"

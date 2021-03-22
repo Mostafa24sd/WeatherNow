@@ -58,7 +58,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         _binding = MainFragmentBinding.bind(view)
 
         if (args.SearchResult != null) {
-
             if (args.SearchResult!!.local_names != null)
                 Setting.city = args.SearchResult!!.local_names!!.feature_name!!
             else
@@ -133,7 +132,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             .observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING_DB_FULL -> {
-                            binding.pollution = it.data
+                        binding.pollution = it.data
                     }
                     Status.ERROR -> {
                         Toast.makeText(
@@ -153,19 +152,23 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         binding.currentWeather = it
 
         if (Setting.audio)
-            when (it.weather[0].icon) {
-                "01d" -> playAudio("sounds/sunny.ogg")
-                "01n" -> playAudio("sounds/moon.ogg")
-                "09n" -> playAudio("sounds/heavy_rain.ogg")
-                "10n" -> playAudio("sounds/medium_rain.ogg")
-                "11n" -> playAudio("sounds/thunder.ogg")
-                "50n" -> playAudio("sounds/mist.ogg")
-                else -> stopAudio()
-            }
+            setAudioResource(it)
 
         last_update_txt.text = getDate(Setting.lastUpdate)
 
         refreshWidgets()
+    }
+
+    private fun setAudioResource(currentWeather: CurrentWeather) {
+        when (currentWeather.weather[0].icon) {
+            "01d" -> playAudio("sounds/sunny.ogg")
+            "01n" -> playAudio("sounds/moon.ogg")
+            "09n" -> playAudio("sounds/heavy_rain.ogg")
+            "10n" -> playAudio("sounds/medium_rain.ogg")
+            "11n" -> playAudio("sounds/thunder.ogg")
+            "50n" -> playAudio("sounds/mist.ogg")
+            else -> stopAudio()
+        }
     }
 
     private fun refreshWidgets() {
@@ -176,7 +179,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         requireContext().sendBroadcast(updateFWidgetIntent)
 
         val updatePWidgetIntent = Intent(context, WidgetPollutionProvider::class.java)
-        requireContext().sendBroadcast(updatePWidgetIntent)    }
+        requireContext().sendBroadcast(updatePWidgetIntent)
+    }
 
     private fun setForecastData(it: ForecastWeather) {
         val adapter = ForecastAdapter(it)

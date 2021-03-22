@@ -58,6 +58,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.settingsFragment -> {
                 navController.navigate(R.id.settingsFragment)
             }
+            R.id.rate -> {
+
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
