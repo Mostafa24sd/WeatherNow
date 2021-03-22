@@ -29,8 +29,10 @@ class MapFragment : Fragment(R.layout.map_fragment) {
 
         web_view.settings.javaScriptEnabled = true
 
-        CookieManager.getInstance().setAcceptThirdPartyCookies(web_view, true)
-        CookieManager.getInstance().setCookie(url, "stick-footer-panel=false")
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            CookieManager.getInstance().setAcceptThirdPartyCookies(web_view, true)
+            CookieManager.getInstance().setCookie(url, "stick-footer-panel=false")
+        }
 
         web_view.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {

@@ -24,7 +24,6 @@
 
     <dimen name="normal_padding">4dp</dimen>
     <dimen name="gps_margin">20dp</dimen>
-    <dimen name="search_item_flag_margin">15dp</dimen>
     <dimen name="search_item_margin">14dp</dimen>
     <dimen name="map_items_margin">10dp</dimen>
 

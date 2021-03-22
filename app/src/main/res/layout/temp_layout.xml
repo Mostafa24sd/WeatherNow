@@ -50,7 +50,8 @@
                     android:text="@string/temp"
                     android:textAlignment="center"
                     android:textColor="#696363"
-                    android:textSize="@dimen/title_txt" />
+                    android:textSize="@dimen/title_txt"
+                    android:gravity="center_horizontal" />
 
                 <TextView
                     setTempTxt="@{currentWeather.main.temp}"
@@ -59,7 +60,8 @@
                     android:layout_marginTop="4dp"
                     android:textAlignment="center"
                     android:textSize="@dimen/big_txt"
-                    tools:text="21 C" />
+                    tools:text="21 C"
+                    android:gravity="center_horizontal" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,7 +76,8 @@
                         android:layout_marginTop="4dp"
                         android:textAlignment="center"
                         android:textSize="@dimen/temp_tiny_txt"
-                        android:text="@string/feels_like" />
+                        android:text="@string/feels_like"
+                        android:gravity="center_horizontal" />
 
                     <TextView
                         setFeelTempTxt="@{currentWeather.main.feels_like}"
@@ -83,7 +86,8 @@
                         android:layout_marginTop="4dp"
                         android:textAlignment="center"
                         android:textSize="@dimen/temp_tiny_txt"
-                        tools:text="19 C" />
+                        tools:text="19 C"
+                        android:gravity="center_horizontal" />
                 </LinearLayout>
 
 

@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/f_widget_layout"
     android:layout_width="match_parent"
-    android:layoutDirection="ltr"
     android:layout_height="match_parent"
     android:baselineAligned="false"
-    android:gravity="center">
+    android:gravity="center"
+    android:layoutDirection="ltr">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -19,6 +19,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:src="@drawable/w_sunny_l" />
@@ -28,7 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
             android:layout_toEndOf="@+id/f_widget_img1"
+            android:layout_toRightOf="@+id/f_widget_img1"
             android:orientation="vertical">
 
             <TextView
@@ -61,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
         android:layout_weight="0.1"
         android:gravity="center">
 
@@ -69,6 +73,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:src="@drawable/w_sunny_l" />
@@ -78,7 +83,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
             android:layout_toEndOf="@+id/f_widget_img2"
+            android:layout_toRightOf="@+id/f_widget_img2"
             android:orientation="vertical">
 
             <TextView
@@ -111,6 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
         android:layout_weight="0.1"
         android:gravity="center">
 
@@ -119,6 +127,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:src="@drawable/w_sunny_l" />
@@ -128,7 +137,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
             android:layout_toEndOf="@+id/f_widget_img3"
+            android:layout_toRightOf="@+id/f_widget_img3"
             android:orientation="vertical">
 
             <TextView
@@ -161,6 +172,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
         android:layout_weight="0.1"
         android:gravity="center">
 
@@ -169,6 +181,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:src="@drawable/w_sunny_l" />
@@ -178,7 +191,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
             android:layout_toEndOf="@+id/f_widget_img4"
+            android:layout_toRightOf="@+id/f_widget_img4"
             android:orientation="vertical">
 
             <TextView
@@ -199,7 +214,6 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/exo_e_l"
                 android:singleLine="true"
-
                 android:textAlignment="center"
                 android:textSize="11sp"
                 app:autoSizeTextType="uniform" />

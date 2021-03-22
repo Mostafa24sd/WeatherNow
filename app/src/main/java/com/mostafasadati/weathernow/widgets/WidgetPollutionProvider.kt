@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.widget.RemoteViews
-import android.widget.Toast
 import com.mostafasadati.weathernow.*
 import com.mostafasadati.weathernow.data.WeatherRepository
 import com.mostafasadati.weathernow.model.Pollution

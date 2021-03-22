@@ -31,6 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/search_item_margin"
+                    android:layout_marginLeft="@dimen/search_item_margin"
                     android:layout_marginTop="@dimen/normal_padding"
                     android:fontFamily="@font/far_two_light"
                     android:text="@{city.name}"
@@ -43,6 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/search_item_margin"
+                    android:layout_marginLeft="@dimen/search_item_margin"
                     android:fontFamily="@font/far_two_light"
                     android:text="@{city.country}"
                     android:textSize="@dimen/search_item_country_txt_size"
@@ -55,11 +57,11 @@
                     android:layout_width="@dimen/search_item_flag"
                     android:layout_height="@dimen/search_item_flag"
                     android:layout_marginEnd="@dimen/search_item_margin"
+                    android:layout_marginRight="@dimen/search_item_margin"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/ir" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

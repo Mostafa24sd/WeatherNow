@@ -30,7 +30,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_weight="0.3"
-                tools:src="@drawable/d_sun_partly_cloudy" />
+                tools:src="@drawable/d_sun_partly_cloudy"
+                android:layout_marginLeft="10dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
@@ -62,7 +63,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.38"
-                    tools:text="Cloudy" />
+                    tools:text="Cloudy"
+                    android:gravity="center_horizontal" />
 
                 <TextView
                     android:id="@+id/cityTxt"
@@ -73,7 +75,8 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/description_txt"
                     app:layout_constraintTop_toBottomOf="@id/descTxt"
-                    tools:text="Tehran" />
+                    tools:text="Tehran"
+                    android:gravity="center_horizontal" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

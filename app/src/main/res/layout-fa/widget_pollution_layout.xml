@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_linear_layout_pollution"
-    android:layoutDirection="ltr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     android:gravity="center"
-    android:orientation="horizontal">
-
+    android:layoutDirection="ltr"
+    android:orientation="horizontal"
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/p_widget_img"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_refresh_black_24dp" />
@@ -25,7 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
         android:layout_toEndOf="@+id/p_widget_img"
+        android:layout_toRightOf="@+id/p_widget_img"
         android:orientation="vertical">
 
         <TextView
@@ -33,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/far_two_light"
+            android:gravity="center_horizontal"
             android:maxLines="1"
             android:textAlignment="center"
             android:textSize="20sp"

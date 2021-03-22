@@ -18,7 +18,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_refresh_black_24dp" />
+        android:src="@drawable/ic_refresh_black_24dp"
+        android:layout_alignParentLeft="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,9 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="2dp"
         android:layout_toEndOf="@+id/p_widget_img"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@+id/p_widget_img">
 
         <TextView
             android:id="@+id/p_widget_aqi_text"
@@ -37,13 +40,13 @@
             android:textAlignment="center"
             android:textSize="20sp"
             app:autoSizeTextType="uniform"
-            tools:text="43" />
+            tools:text="43"
+            android:gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/p_widget_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:duplicateParentState="true"
             android:ellipsize="marquee"
             android:focusable="true"
@@ -55,7 +58,8 @@
             android:text="@string/can_t_load"
             android:textAlignment="center"
             android:textSize="14sp"
-            app:autoSizeTextType="uniform">
+            app:autoSizeTextType="uniform"
+            android:gravity="center_horizontal">
 
             <requestFocus
                 android:duplicateParentState="true"

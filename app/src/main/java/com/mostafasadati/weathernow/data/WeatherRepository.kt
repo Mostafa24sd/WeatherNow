@@ -1,6 +1,5 @@
 package com.mostafasadati.weathernow.data
 
-import android.util.Log
 import androidx.lifecycle.liveData
 import com.mostafasadati.weathernow.Resource
 import com.mostafasadati.weathernow.Setting

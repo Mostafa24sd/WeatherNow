@@ -74,7 +74,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/air_quality"
                             android:textAlignment="center"
-                            android:textSize="@dimen/pollution_txt" />
+                            android:textSize="@dimen/pollution_txt"
+                            android:gravity="center_horizontal" />
 
                         <TextView
                             setPollutionText="@{pollution}"
@@ -82,7 +83,8 @@
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
                             android:textSize="@dimen/pollution_txt"
-                            tools:text="150" />
+                            tools:text="150"
+                            android:gravity="center_horizontal" />
 
                     </LinearLayout>
 
@@ -107,16 +109,6 @@
                         layout="@layout/sunrise_sunset_layout"
                         bind:currentWeather="@{currentWeather}" />
 
-                    <!--<ProgressBar
-                        android:id="@+id/circularProgressbar"
-                        progressbar_visibility="@{status}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:indeterminate="false"
-                        android:max="100"
-                        android:progress="50"
-                        android:secondaryProgress="100" />-->
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -124,7 +116,9 @@
                         android:paddingStart="@dimen/normal_padding"
                         android:text="@string/forecast"
                         android:textSize="@dimen/title_txt"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        android:paddingLeft="@dimen/normal_padding"
+                        android:layout_marginRight="@dimen/normal_padding" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/forecast_recyclerview"

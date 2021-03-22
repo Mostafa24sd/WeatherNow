@@ -40,12 +40,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/co"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.co)}"
                         android:textAlignment="center" />
@@ -61,12 +63,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/no"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.no)}"
                         android:textAlignment="center" />
@@ -82,12 +86,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/no2"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.no2)}"
                         android:textAlignment="center" />
@@ -103,12 +109,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/o3"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.o3)}"
                         android:textAlignment="center" />
@@ -133,12 +141,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/so2"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.so2)}"
                         android:textAlignment="center" />
@@ -154,12 +164,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/pm2_5"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.pm2_5)}"
                         android:textAlignment="center" />
@@ -175,12 +187,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/pm10"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.pm10)}"
                         android:textAlignment="center" />
@@ -196,12 +210,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="@string/nh3"
                         android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{Double.toString(pollution.list.get(0).components.nh3)}"
                         android:textAlignment="center" />

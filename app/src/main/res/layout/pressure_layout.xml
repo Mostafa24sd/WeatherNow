@@ -34,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pressure"
                 android:textAlignment="center"
-                android:textSize="@dimen/title_txt" />
+                android:textSize="@dimen/title_txt"
+                android:gravity="center_horizontal" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/pressureTxt"
@@ -44,7 +45,8 @@
                 android:text="@{currentWeather.main.pressure + ` hpa`}"
                 android:textAlignment="center"
                 android:textSize="@dimen/big_txt"
-                app:autoSizeTextType="uniform" />
+                app:autoSizeTextType="uniform"
+                android:gravity="center_horizontal" />
 
         </LinearLayout>
 

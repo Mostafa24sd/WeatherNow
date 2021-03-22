@@ -29,7 +29,8 @@
                 android:text="@string/sunrise"
                 android:textAlignment="center"
                 android:textSize="@dimen/sunrise_sunset_txt"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:gravity="center_horizontal" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                 android:textAlignment="center"
                 setSunriseSunsetTxt="@{currentWeather.sys.sunrise}"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/sunrise_sunset_txt" />
+                android:textSize="@dimen/sunrise_sunset_txt"
+                android:gravity="center_horizontal" />
 
         </LinearLayout>
 
@@ -61,7 +63,8 @@
                 android:textAlignment="center"
                 android:text="@string/sunset"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/sunrise_sunset_txt" />
+                android:textSize="@dimen/sunrise_sunset_txt"
+                android:gravity="center_horizontal" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -76,7 +79,8 @@
                 android:textAlignment="center"
                 setSunriseSunsetTxt="@{currentWeather.sys.sunset}"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/sunrise_sunset_txt" />
+                android:textSize="@dimen/sunrise_sunset_txt"
+                android:gravity="center_horizontal" />
 
         </LinearLayout>
 

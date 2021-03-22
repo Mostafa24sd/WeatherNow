@@ -68,7 +68,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/humidity"
                         android:textAlignment="center"
-                        android:textSize="@dimen/title_txt" />
+                        android:textSize="@dimen/title_txt"
+                        android:gravity="center_horizontal" />
 
                     <TextView
                         android:id="@+id/humidTxt"
@@ -78,7 +79,8 @@
                         android:layout_marginTop="@dimen/normal_padding"
                         android:maxLines="1"
                         android:textAlignment="center"
-                        android:textSize="@dimen/big_txt" />
+                        android:textSize="@dimen/big_txt"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 

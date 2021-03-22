@@ -2,7 +2,6 @@ package com.mostafasadati.weathernow
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.AnimationDrawable
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
