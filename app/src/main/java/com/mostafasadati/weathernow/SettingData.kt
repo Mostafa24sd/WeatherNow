@@ -58,7 +58,6 @@ class SettingData {
             } catch (ex: Exception) {
                 WidgetColor.Light
             }
-
         }
 
         private fun getCurrentTime() = Calendar.getInstance(TimeZone.getDefault()).timeInMillis
