@@ -58,12 +58,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         _binding = MainFragmentBinding.bind(view)
 
         if (args.SearchResult != null) {
-            if (args.SearchResult!!.local_names != null)
-                Setting.city = args.SearchResult!!.local_names!!.feature_name!!
-            else
-                Setting.city = args.SearchResult!!.name
-
-            Setting.country = args.SearchResult!!.country
             Setting.lat = args.SearchResult!!.lat
             Setting.lon = args.SearchResult!!.lon
             SettingData.saveSetting(requireContext())

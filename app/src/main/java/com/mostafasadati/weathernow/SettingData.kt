@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.mostafasadati.weathernow.widgets.WidgetColor
 import java.lang.Exception
+import java.util.*
 
 class SettingData {
 
@@ -22,8 +23,6 @@ class SettingData {
         fun saveSetting(context: Context) {
             val editor: SharedPreferences.Editor? =
                 context.getSharedPreferences(SETTING_FILE_NAME, Context.MODE_PRIVATE)?.edit()
-            editor?.putString(CITY, Setting.city)
-            editor?.putString(COUNTRY, Setting.country)
             editor?.putFloat(LAT, Setting.lat)
             editor?.putFloat(LON, Setting.lon)
             editor?.putLong(LAST_UPDATE, Setting.lastUpdate)
@@ -32,17 +31,16 @@ class SettingData {
 
         fun loadSetting(context: Context) {
             val sharedPref = context.getSharedPreferences(SETTING_FILE_NAME, Context.MODE_PRIVATE)
-            Setting.city = sharedPref.getString(CITY, "Tehran")!!
-            Setting.country = sharedPref.getString(COUNTRY, "IR")!!
+
             Setting.unit = stringToUnit(sharedPref.getString(UNIT, Unit.Metric.name)!!)
             Setting.audio = sharedPref.getBoolean(AUDIO, true)
             Setting.currentWidgetColor =
                 stringToWidgetColor(sharedPref.getString(CURRENT_WIDGET_COLOR, WidgetColor.Light.name)!!)
             Setting.forecastWidgetColor =
                 stringToWidgetColor(sharedPref.getString(FORECAST_WIDGET_COLOR, WidgetColor.Light.name)!!)
-            Setting.lat = sharedPref.getFloat(LAT, 35.6944f)
-            Setting.lon = sharedPref.getFloat(LON, 51.4215f)
-            Setting.lastUpdate = sharedPref.getLong(LAST_UPDATE, 0)
+            Setting.lat = sharedPref.getFloat(LAT, 51.5085f)
+            Setting.lon = sharedPref.getFloat(LON, -0.1257f)
+            Setting.lastUpdate = sharedPref.getLong(LAST_UPDATE, getCurrentTime())
             Setting.locale = context.resources.configuration.locale
         }
 
@@ -62,5 +60,8 @@ class SettingData {
             }
 
         }
+
+        private fun getCurrentTime() = Calendar.getInstance(TimeZone.getDefault()).timeInMillis
+
     }
 }
