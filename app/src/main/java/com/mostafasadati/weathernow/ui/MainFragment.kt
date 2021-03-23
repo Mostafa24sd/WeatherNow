@@ -208,18 +208,21 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun stopAudio() {
-        if (::mediaPlayer.isInitialized && mediaPlayer.isPlaying) {
-            mediaPlayer.stop()
-            mediaPlayer.release()
+        if (::mediaPlayer.isInitialized) {
+            try {
+                if (mediaPlayer.isPlaying) {
+                    mediaPlayer.stop()
+                    mediaPlayer.release()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
     override fun onPause() {
         super.onPause()
-        if (this::mediaPlayer.isInitialized) {
-            if (mediaPlayer.isPlaying)
-                mediaPlayer.pause()
-        }
+        stopAudio()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
