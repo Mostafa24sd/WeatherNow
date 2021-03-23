@@ -103,7 +103,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                     LOCATION_REQUEST_CODE
                 )
             }
-        }
+        }else
+            startGPS()
     }
 
     private fun startGPS() {
