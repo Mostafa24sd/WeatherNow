@@ -1,7 +1,10 @@
 package com.mostafasadati.weathernow.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
@@ -42,7 +45,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigation_view.setNavigationItemSelectedListener(this)
     }
 
-
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(
             navController,
@@ -58,11 +60,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.settingsFragment -> {
                 navController.navigate(R.id.settingsFragment)
             }
-            R.id.rate -> {
-
+            R.id.rate -> rateToApp()
+            R.id.contactMe -> {
+                val intent = Intent(Intent.ACTION_SENDTO)
+                intent.data = Uri.parse("mailto:")
+                intent.putExtra(Intent.EXTRA_EMAIL, "mostafa24sadati@live.com")
+                intent.putExtra(Intent.EXTRA_SUBJECT, "About WeatherNow 2")
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                }
+            }
+            R.id.githubPage -> {
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse("https://github.com/Mostafa24sd")
+                startActivity(i)
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun rateToApp() {
+        Toast.makeText(this, "Thanks:)", Toast.LENGTH_SHORT).show()
     }
 }

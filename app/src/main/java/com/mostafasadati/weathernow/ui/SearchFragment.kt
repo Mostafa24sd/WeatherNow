@@ -3,34 +3,47 @@ package com.mostafasadati.weathernow.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.content.IntentSender
+import android.content.pm.PackageManager
 import android.location.Location
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper.getMainLooper
+import android.provider.Settings
 import android.view.*
-import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.mostafasadati.weathernow.R
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
-import com.mostafasadati.weathernow.R
-import com.mostafasadati.weathernow.Resource
-import com.mostafasadati.weathernow.Setting
-import com.mostafasadati.weathernow.Status
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.mostafasadati.weathernow.*
 import com.mostafasadati.weathernow.data.SearchCityAdapter
 import com.mostafasadati.weathernow.databinding.SearchFragmentBinding
 import com.mostafasadati.weathernow.model.SearchCity
 import com.mostafasadati.weathernow.viewmodel.SearchViewModel
-import com.nabinbhandari.android.permissions.PermissionHandler
-import com.nabinbhandari.android.permissions.Permissions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.search_fragment.*
 
+
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.search_fragment) {
+    private val LOCATION_REQUEST_CODE = 2
+    val permissions = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    )
+
     private val viewModel by viewModels<SearchViewModel>()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var request: LocationRequest
@@ -57,7 +70,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         gps.setOnClickListener {
-            hideKeyboard()
+            view.hideKeyboard()
             checkPermission()
         }
 
@@ -80,49 +93,53 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private fun checkPermission() {
 
-        val permissions =
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-
-        Permissions.check(requireContext(), permissions, null, null, object : PermissionHandler() {
-            override fun onGranted() {
-                bindings.status = Status.LOADING
-
-                request = LocationRequest.create()
-                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-
-                builder = LocationSettingsRequest.Builder().addLocationRequest(request)
-
-                val result: Task<LocationSettingsResponse> =
-                    LocationServices.getSettingsClient(context)
-                        .checkLocationSettings(builder.build())
-
-                result.addOnFailureListener {
-                    if (it is ResolvableApiException) {
-                        try {
-                            val resolvable = it
-                            resolvable.startResolutionForResult(requireActivity(), 8990)
-                        } catch (ex: IntentSender.SendIntentException) {
-                            ex.printStackTrace()
-                        }
-                    }
-                }
-                locationCallback = object : LocationCallback() {
-                    override fun onLocationResult(locationResult: LocationResult?) {
-                        locationResult ?: return
-
-                        if (locationResult.locations.isNotEmpty()) {
-                            val location = locationResult.lastLocation
-                            searchByGPS(location)
-                            return
-                        }
-                    }
-                }
-                startLocationUpdates()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            when {
+                hasPermissions(requireContext(), *permissions) -> startGPS()
+                shouldShowRequestPermissionRationale(permissions[0]) -> permissionExplanation()
+                shouldShowRequestPermissionRationale(permissions[1]) -> permissionExplanation()
+                else -> requestPermissions(
+                    permissions,
+                    LOCATION_REQUEST_CODE
+                )
             }
-        })
+        }
+    }
+
+    private fun startGPS() {
+        bindings.status = Status.LOADING
+
+        request = LocationRequest.create()
+            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+
+        builder = LocationSettingsRequest.Builder().addLocationRequest(request)
+
+        val result: Task<LocationSettingsResponse> =
+            LocationServices.getSettingsClient(context)
+                .checkLocationSettings(builder.build())
+
+        result.addOnFailureListener {
+            if (it is ResolvableApiException) {
+                try {
+                    val resolvable = it
+                    resolvable.startResolutionForResult(requireActivity(), 8990)
+                } catch (ex: IntentSender.SendIntentException) {
+                    ex.printStackTrace()
+                }
+            }
+        }
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+
+                if (locationResult.locations.isNotEmpty()) {
+                    val location = locationResult.lastLocation
+                    searchByGPS(location)
+                    return
+                }
+            }
+        }
+        startLocationUpdates()
     }
 
     @SuppressLint("MissingPermission")
@@ -195,19 +212,71 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
-    override fun onDestroy() {
-        hideKeyboard()
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
+        view?.hideKeyboard()
     }
 
-    private fun hideKeyboard() {
-        val imm: InputMethodManager =
-            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-
-        var view = requireActivity().currentFocus
-        if (view == null) {
-            view = View(activity)
+    private fun hasPermissions(context: Context, vararg permissions: String): Boolean =
+        permissions.all {
+            ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
         }
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                startGPS()
+            } else {
+                val showRationale = shouldShowRequestPermissionRationale(permissions[0])
+                if (!showRationale) {
+                    //Never ask again
+                    permissionExplanation()
+                }
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun openPermissionSetting() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri: Uri = Uri.fromParts("package", activity?.packageName, null)
+        intent.data = uri
+        startActivityForResult(intent, 0)
+    }
+
+    private fun permissionExplanation() {
+        val alertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.setTitle(getString(R.string.location_required))
+            builder.setMessage(getString(R.string.access_to_gps))
+            builder.apply {
+                setPositiveButton(
+                    R.string.ok
+                ) { dialog, _ ->
+                    dialog.dismiss()
+                    if (shouldShowRequestPermissionRationale(permissions[0]) || shouldShowRequestPermissionRationale(
+                            permissions[1]
+                        )
+                    )
+                        requestPermissions(
+                            permissions,
+                            LOCATION_REQUEST_CODE
+                        )
+                    else
+                        openPermissionSetting()
+                }
+                setNegativeButton(
+                    R.string.cancel
+                ) { dialog, _ ->
+                    dialog.dismiss()
+                }
+            }
+            builder.create()
+            builder.show()
+        }
     }
 }

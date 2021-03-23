@@ -38,8 +38,8 @@
     <string name="setting">تنظیمات</string>
     <string name="rate">نظر دادن</string>
     <string name="other">دیگر</string>
-    <string name="report_a_problem">گزارش مشکل</string>
-    <string name="contact_us">ارتباط با ما</string>
+    <string name="contact_me">ارتباظ با من</string>
+    <string name="github">گیت هاب</string>
     <string name="not_found">پیدا نشد :(</string>
     <string name="search_by_gps">جستجو با GPS</string>
     <string name="feels_like">دمای حسی:\u0020</string>
@@ -86,6 +86,9 @@
     <string name="unknown">نامشخص</string>
     <string name="widgets_color">رنگ ویجت ها</string>
     <string name="forecast_weather">ویجت پیش بینی</string>
-
+    <string name="ok">تایید</string>
+    <string name="cancel">لغو</string>
+    <string name="location_required">نیاز به دسترسی به موقعیت مکانی</string>
+    <string name="access_to_gps">برای جستجو با GPS لطفا اجازه دسترسی برنامه به موقعیت مکانی را بدهید</string>
 
 </resources>

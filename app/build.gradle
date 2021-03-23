@@ -60,10 +60,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    //Navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
-    implementation 'com.airbnb.android:lottie:3.6.1'
 
     // LifeCycle
     implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
@@ -83,20 +82,17 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
+    //Retrofit and okhttp
     implementation 'com.google.code.gson:gson:2.8.6'
-
     implementation("com.squareup.retrofit2:retrofit:2.7.1")
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
-
     implementation("com.squareup.okhttp3:okhttp:3.12.8") {
         force = true
     }
 
-
-    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'com.airbnb.android:lottie:3.6.1'
 
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-    implementation 'com.nabinbhandari.android:permissions:3.8'
 
     implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
 

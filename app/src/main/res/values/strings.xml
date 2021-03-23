@@ -38,8 +38,8 @@
     <string name="setting">Setting</string>
     <string name="rate">Rate</string>
     <string name="other">other</string>
-    <string name="report_a_problem">Report a problem</string>
-    <string name="contact_us">Contact us</string>
+    <string name="contact_me">Contact me</string>
+    <string name="github">Github</string>
     <string name="not_found">Not found:(</string>
     <string name="search_by_gps">Search by GPS</string>
     <string name="feels_like">Fells like:\u0020</string>
@@ -88,5 +88,9 @@
     <string name="unknown">Unknown</string>
     <string name="widgets_color">Widgets color</string>
     <string name="forecast_weather">Forecast weather</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="location_required">Location permission required</string>
+    <string name="access_to_gps">For search by GPS, please allow access to Location</string>
 
 </resources>

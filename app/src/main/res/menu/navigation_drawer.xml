@@ -22,11 +22,13 @@
         <menu>
 
             <item
-                android:icon="@drawable/ic_report_problem_black_24dp"
-                android:title="@string/report_a_problem" />
+                android:id="@+id/contactMe"
+                android:icon="@drawable/ic_email"
+                android:title="@string/contact_me" />
             <item
-                android:icon="@drawable/ic_email_black_24dp"
-                android:title="@string/contact_us" />
+                android:id="@+id/githubPage"
+                android:icon="@drawable/ic_site"
+                android:title="@string/github" />
 
         </menu>
 
