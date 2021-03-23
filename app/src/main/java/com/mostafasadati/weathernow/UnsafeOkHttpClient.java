@@ -1,5 +1,7 @@
 package com.mostafasadati.weathernow;
 
+import androidx.annotation.NonNull;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
@@ -10,6 +12,7 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.OkHttpClient;
 
 public class UnsafeOkHttpClient {
+    @NonNull
     public static OkHttpClient getUnsafeOkHttpClient() {
         try {
             // Create a trust manager that does not validate certificate chains
@@ -23,6 +26,7 @@ public class UnsafeOkHttpClient {
                         public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
                         }
 
+                        @NonNull
                         @Override
                         public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                             return new java.security.cert.X509Certificate[]{};
@@ -39,12 +43,7 @@ public class UnsafeOkHttpClient {
 
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
             builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
+            builder.hostnameVerifier((hostname, session) -> true);
 
             return builder.build();
         } catch (Exception e) {

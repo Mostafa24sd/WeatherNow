@@ -19,7 +19,7 @@ interface WeatherApi {
         const val SEARCH_NAME = "geo/1.0/direct"
         const val SEARCH_GPS = "geo/1.0/reverse"
         var API_KEY =
-            if ((1..2).random() == 1) BuildConfig.OPENWEATHERMAP_API_KEY1 else BuildConfig.OPENWEATHERMAP_API_KEY2
+            BuildConfig.OPENWEATHERMAP_API_KEY1
     }
 
     @GET(CURRENT)

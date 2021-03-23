@@ -22,7 +22,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "OPENWEATHERMAP_API_KEY1", openweathermap_api_key1)
-        buildConfigField("String", "OPENWEATHERMAP_API_KEY2", openweathermap_api_key2)
     }
 
     buildTypes {

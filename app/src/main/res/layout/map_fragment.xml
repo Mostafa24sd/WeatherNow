@@ -56,7 +56,8 @@
                 android:focusable="true"
                 app:backgroundTint="#ffffff"
                 app:borderWidth="0dp"
-                app:srcCompat="@drawable/map_wind" />
+                app:srcCompat="@drawable/map_wind"
+                android:layout_marginRight="@dimen/map_items_margin" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/rainButton"
@@ -68,7 +69,8 @@
                 android:focusable="true"
                 app:backgroundTint="#A9E2F3"
                 app:borderWidth="0dp"
-                app:srcCompat="@drawable/map_rain" />
+                app:srcCompat="@drawable/map_rain"
+                android:layout_marginRight="@dimen/map_items_margin" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/tempButton"
@@ -80,7 +82,8 @@
                 android:focusable="true"
                 app:backgroundTint="#FE642E"
                 app:borderWidth="0dp"
-                app:srcCompat="@drawable/map_temp" />
+                app:srcCompat="@drawable/map_temp"
+                android:layout_marginRight="@dimen/map_items_margin" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/cloudsButton"
@@ -92,7 +95,8 @@
                 android:focusable="true"
                 app:backgroundTint="#CEECF5"
                 app:borderWidth="0dp"
-                app:srcCompat="@drawable/map_clouds" />
+                app:srcCompat="@drawable/map_clouds"
+                android:layout_marginRight="@dimen/map_items_margin" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/pressureButton"
