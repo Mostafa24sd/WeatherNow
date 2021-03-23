@@ -8,10 +8,11 @@
 - Search by GPS
 - Audio effects
 
-![alt text](screenshot/img1.jpg)
-![alt text](screenshot/img2.jpg)
-![alt text](screenshot/img3.jpg)
-![alt text](screenshot/img4.jpg)
+
+<img src="screenshot/img4.jpg" width="150">
+<img src="screenshot/img3.jpg" width="150">
+<img src="screenshot/img1.jpg" width="150">
+<img src="screenshot/img2.jpg" width="150">
 
 
 - Written in kotlin
