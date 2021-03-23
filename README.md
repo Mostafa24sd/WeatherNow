@@ -1,5 +1,7 @@
-# WeatherNow is a weather application for Android. 
+# WeatherNow is a weather application for Android.
+
 # Features
+
 - Current and 5 day forecast
 - Beautiful animations
 - Works online and offline
@@ -9,7 +11,9 @@
 - Audio effects
 
 
-<img src="screenshot/img4.jpg" width="150"> <img src="screenshot/img3.jpg" width="150"> <img src="screenshot/img1.jpg" width="150"> <img src="screenshot/img2.jpg" width="150">
+<img src="screenshot/img4.jpg" width="150"> <img
+src="screenshot/img3.jpg" width="150"> <img src="screenshot/img1.jpg"
+width="150"> <img src="screenshot/img2.jpg" width="150">
 
 
 - Written in kotlin
@@ -17,4 +21,3 @@
 - DataBinding
 - Libraries: Retrofit, Room, Hilt, Lottie and Lifecycle.
 
-        
