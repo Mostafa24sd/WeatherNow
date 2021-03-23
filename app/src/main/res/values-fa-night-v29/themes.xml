@@ -24,5 +24,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="colorPrimary">#FFFFFF</item>
     </style>
-
+    <style name="Theme.MyApp.Dialog.Alert" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/white</item>
+    </style>
 </resources>

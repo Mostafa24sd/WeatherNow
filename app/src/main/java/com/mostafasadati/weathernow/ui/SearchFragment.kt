@@ -249,34 +249,34 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     }
 
     private fun permissionExplanation() {
-        val alertDialog: AlertDialog? = activity?.let {
-            val builder = AlertDialog.Builder(it)
-            builder.setTitle(getString(R.string.location_required))
-            builder.setMessage(getString(R.string.access_to_gps))
-            builder.apply {
-                setPositiveButton(
-                    R.string.ok
-                ) { dialog, _ ->
-                    dialog.dismiss()
-                    if (shouldShowRequestPermissionRationale(permissions[0]) || shouldShowRequestPermissionRationale(
-                            permissions[1]
-                        )
+
+        val builder = MaterialAlertDialogBuilder(requireContext(),R.style.Theme_MyApp_Dialog_Alert)
+        builder.setTitle(getString(R.string.location_required))
+        builder.setMessage(getString(R.string.access_to_gps))
+        builder.apply {
+            setPositiveButton(
+                R.string.ok
+            ) { dialog, _ ->
+                dialog.dismiss()
+                if (shouldShowRequestPermissionRationale(permissions[0]) || shouldShowRequestPermissionRationale(
+                        permissions[1]
                     )
-                        requestPermissions(
-                            permissions,
-                            LOCATION_REQUEST_CODE
-                        )
-                    else
-                        openPermissionSetting()
-                }
-                setNegativeButton(
-                    R.string.cancel
-                ) { dialog, _ ->
-                    dialog.dismiss()
-                }
+                )
+                    requestPermissions(
+                        permissions,
+                        LOCATION_REQUEST_CODE
+                    )
+                else
+                    openPermissionSetting()
             }
-            builder.create()
-            builder.show()
+            setNegativeButton(
+                R.string.cancel
+            ) { dialog, _ ->
+                dialog.dismiss()
+            }
         }
+        builder.create()
+        builder.show()
+
     }
 }
