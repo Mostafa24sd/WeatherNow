@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.mostafasadati.weathernow.R
+import com.mostafasadati.weathernow.widgets.ForecastCalculator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -82,5 +83,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun rateToApp() {
         Toast.makeText(this, "Thanks:)", Toast.LENGTH_SHORT).show()
+
     }
 }

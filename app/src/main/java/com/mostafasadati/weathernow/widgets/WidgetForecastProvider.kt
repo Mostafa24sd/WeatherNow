@@ -22,8 +22,6 @@ import kotlin.math.roundToInt
 class WidgetForecastProvider : AppWidgetProvider() {
     lateinit var views: RemoteViews
 
-    private var j = 0
-
     @Inject
     lateinit var repository: WeatherRepository
 
@@ -115,41 +113,18 @@ class WidgetForecastProvider : AppWidgetProvider() {
     ) {
 
         if (forecastWeather.data != null) {
-            for (i in 0..39) {
-                if ((forecastWeather.data.mList[0].dt_txt.substring(
-                        0,
-                        10
-                    )) != forecastWeather.data.mList[i].dt_txt.substring(0, 10)
-                ) {
-                    j = i
-                    break
-                }
-            }
 
-            val temps = arrayListOf(0, 0, 0, 0)
-            val days = arrayListOf<String>()
-
-            for (k in 0..3) {
-                for (i in 0..7) {
-                    temps[k] += forecastWeather.data.mList[i + j + (k * 8)].main.temp.roundToInt()
-                }
-                temps[k] /= 8
-                days.add(
-                    getDayOfWeek(
-                        context,
-                        forecastWeather.data.mList[j + (k * 8)].dt_txt
-                    )!!
-                )
-            }
+            val (temps, days) = ForecastCalculator(
+                context,
+                forecastWeather = forecastWeather.data
+            ).getTempAndDates()
 
             for (i in 0..3) {
                 views.setTextViewText(
                     tempsTextIds[i],
                     setTempUnit(temps[i])
                 )
-
                 views.setTextViewText(daysTextIds[i], days[i])
-
             }
 
             val imagesIDs = arrayListOf(
@@ -222,27 +197,4 @@ class WidgetForecastProvider : AppWidgetProvider() {
             Unit.Metric -> "$temp \u2103"
             else -> "$temp \u2109"
         }
-
-    /*private fun getDayOfWeek(str: String?): String {
-        var date1: Date? = Date()
-        try {
-            date1 = SimpleDateFormat("yyyy-MM-dd").parse(str)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        val c = Calendar.getInstance()
-        c.time = date1
-        val dayNum = c[Calendar.DAY_OF_WEEK]
-        var dayOfWeek: String? = ""
-        when (dayNum) {
-            1 -> dayOfWeek = "Sun"
-            2 -> dayOfWeek = "Mon"
-            3 -> dayOfWeek = "Tue"
-            4 -> dayOfWeek = "Wed"
-            5 -> dayOfWeek = "Thu"
-            6 -> dayOfWeek = "Fri"
-            7 -> dayOfWeek = "Sat"
-        }
-        return dayOfWeek!!
-    }*/
 }

@@ -30,7 +30,7 @@ data class City(
     val population: Long,
     val sunrise: Long,
     val sunset: Long,
-    val timezone: Int
+    val timezone: Long
 ) {
     data class Coord(
         val lat: Double,
