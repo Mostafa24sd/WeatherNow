@@ -11,6 +11,7 @@
 - Search by GPS
 - Audio effects
 
+# ScreenShoots
 
 <img src="screenshot/img4.jpg" width="150"> <img
 src="screenshot/img3.jpg" width="150"> <img src="screenshot/img1.jpg"
@@ -22,5 +23,5 @@ width="150"> <img src="screenshot/img2.jpg" width="150">
 - DataBinding
 - Libraries: Retrofit, Room, Hilt, Lottie and Lifecycle.
 
-# Doante
-If you like this app, please consider buying me a coffee. Thank you for your support!
+# Support
+If you like this app, please consider [ buying me a coffee](https://mostafa24.dev/donate/) . Thank you for your support!
