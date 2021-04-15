@@ -35,5 +35,4 @@ class ForecastAdapter(private val forecastWeather: ForecastWeather) :
     override fun getItemCount(): Int {
         return forecastWeather.mList.size
     }
-
 }

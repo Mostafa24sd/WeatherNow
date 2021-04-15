@@ -24,7 +24,6 @@ class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
         SettingData.loadSetting(this)
     }
 
@@ -33,23 +32,11 @@ class App : MultiDexApplication() {
     @InstallIn(SingletonComponent::class)
     object AppModule {
 
-        /*@Provides
-        @Singleton
-        fun provideClient(): OkHttpClient {
-            val logger = HttpLoggingInterceptor()
-            logger.level = HttpLoggingInterceptor.Level.BASIC
-
-            return OkHttpClient.Builder()
-                .addInterceptor(logger)
-                .build()
-        }
-*/
         @Provides
         @Singleton
         fun provideApi(): WeatherApi {
             val retrofit = Retrofit.Builder()
                 .baseUrl(WeatherApi.BASE_URL)
-//                .client(client)
                 .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
