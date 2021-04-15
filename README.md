@@ -1,4 +1,4 @@
-# WeatherNow is a weather application for Android.
+<img src="screenshot/ic_launcher.png" width="150"> # WeatherNow is a weather application for Android.
 
 # Features
 
