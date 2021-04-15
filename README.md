@@ -3,7 +3,7 @@
 
 # Features
 
-- Current and 5 day forecast
+- Current weather and weather forecasts for any location in the world.
 - Beautiful animations
 - Works online and offline
 - Air pollution
@@ -22,3 +22,5 @@ width="150"> <img src="screenshot/img2.jpg" width="150">
 - DataBinding
 - Libraries: Retrofit, Room, Hilt, Lottie and Lifecycle.
 
+# Doante
+If you like this app, please consider buying me a coffee. Thank you for your support!
